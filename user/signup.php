@@ -10,13 +10,17 @@ if (isset($_POST['reg'])) {
       //  $err = "Blank Values Not Accepted";
    // } else {
         $u_name = $_POST['u_name'];
-        $u_address = $_POST['u_address'];
+       // $u_address = $_POST['u_address'];
         $u_phoneno = $_POST['u_mobile'];
         $u_email = $_POST['u_email'];
        $u_password = $_POST['u_password']; //Hash This 
         //$u_password = password_hash($_POST['u_password'], PASSWORD_DEFAULT)
         $u_id = $_POST['u_id'];
         $u_type = $_POST['u_type'];
+        $uimage=$_FILES['image']['name'];
+
+        $temp_name  =$_FILES['image']['tmp_name'];
+        move_uploaded_file($temp_name,"uprofile/pp/$uimage");
 
         //$query = "SELECT * FROM user3 where u_email='$u_email'";
         //$res = $con->query($query);
@@ -34,7 +38,7 @@ if (isset($_POST['reg'])) {
 		    //{
 
         // Check if the email already exists
-    $checkQuery = "SELECT * FROM user4 WHERE u_email=?";
+    $checkQuery = "SELECT * FROM user WHERE u_email=?";
     $checkStmt = $mysqli->prepare($checkQuery);
     $checkStmt->bind_param('s', $u_email);
     $checkStmt->execute();
@@ -45,14 +49,18 @@ if (isset($_POST['reg'])) {
     } else {
 
 
+      $sql="insert into user (u_id, u_name, u_phoneno, u_email, u_password, uimage, u_type) values('$u_id', '$u_name', '$u_phoneno', '$u_email', '$u_password', '$uimage', '$u_type')";
+	    $result=mysqli_query($con,$sql);
+
+
         //Insert Captured information to a database table
-        $postQuery = "INSERT INTO user4 (u_id, u_name,u_address, u_phoneno, u_email, u_password, u_type) VALUES(?,?,?,?,?,?,?)";
-        $postStmt = $mysqli->prepare($postQuery);
+        //$postQuery = "INSERT INTO user (u_id, u_name, u_phoneno, u_email, u_password, uimage, u_type) VALUES(?,?,?,?,?,?,?)";
+        //$postStmt = $mysqli->prepare($postQuery);
         //bind paramaters
-        $rc = $postStmt->bind_param('sssssss', $u_id, $u_name, $u_address, $u_phoneno, $u_email, $u_password, $u_type);
-        $postStmt->execute();
+       // $rc = $postStmt->bind_param('sssss', $u_id, $u_name, $u_phoneno, $u_email, $u_password, $uimage, $u_type);
+       // $postStmt->execute();
         //declare a varible which will be passed to alert function
-        if ($postStmt) {
+        if ($result) {
 
              // show pop-up message
         echo '<script>alert("Account created Successfully!");</script>';
@@ -82,24 +90,10 @@ if (isset($_POST['reg'])) {
 
   <title>Sign Up Form</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <style>
-    body {
-      background-color:"red";
-      background-image: url("https://trbahadurpur.com/wp-content/uploads/2021/01/background-5.jpg");
-    }
-    .back{
-    background-color:"red";
-    }
-
-    .navbar{
-        background-color: brown;
-
-    }
-  </style>
 </head>
 
 <body>
-<?php include("include/header.html");?>
+<?php include("include/header.php");?>
   <br>
   <div class="container">
     <div class="row float-left">
@@ -128,31 +122,27 @@ if (isset($_POST['reg'])) {
                     required>
                 </div>
                 <div class="col">
-                  <label class="text-dark" for="address">Address</label>
-                  <input type="text" class="form-control" placeholder="Enter your address" aria-label="address" name="u_address"
-                    required>
+                <label class="text-dark" for="mobile">Mobile No.</label>
+                <input type="text" class="form-control" placeholder="Enter your moblie number" aria-label="mobile" name="u_mobile" required>
                 </div>
               </div>
 
               <div class="row mt-3">
                 <div class="col">
-                  <label class="text-dark" for="mobile">Mobile No.</label>
-                  <input type="text" class="form-control" placeholder="Enter your moblie number" aria-label="mobile" name="u_mobile"
-                    required>
+                <label class="text-dark" for="email">Email</label>
+                <input type="text" class="form-control" placeholder="Enter your email" aria-label="email" name="u_email" required>                  
                 </div>
 
                 <div class="col">
-                  <label class="text-dark" for="email">Email</label>
-                  <input type="text" class="form-control" placeholder="Enter your email" aria-label="email" name="u_email"
-                    required>
+                <label class="text-dark" for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="u_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$">                 
                 </div>
               </div>
 
               <div class="row mt-3">
               <div class="col">
-              <label class="text-dark" for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password" name="u_password"
-                  required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$">
+              <label for="formFileLg" class="form-label">Image</label>
+              <input class="form-control form-control-lg" id="formFileLg" type="file" name="image" required>
                 </div>
 
 

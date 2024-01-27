@@ -11,7 +11,7 @@ if(isset($_REQUEST['login']))
 	
 	if(!empty($email) && !empty($password))
 	{
-		$sql = "SELECT * FROM user4 where u_email='$email' && u_password='$password'";
+		$sql = "SELECT * FROM user where u_email='$email' && u_password='$password'";
 		$result=mysqli_query($con, $sql);
 		$row=mysqli_fetch_array($result);
 		   if($row){
@@ -51,7 +51,7 @@ if(isset($_REQUEST['login']))
 </head>
 
 <body>
-<?php include("include/header.html");?>
+<?php include("include/header.php");?>
     <div class="container">
         <div class="row justify-content-center ">
             <div class="col-lg-6 mt-4">
