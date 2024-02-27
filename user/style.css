@@ -25,91 +25,199 @@
     border-color: #483c3c;
     line-height: 35px;
   }
+  .user-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 200px; /* Set a default width for images */
+    height: 100px; /* Maintain aspect ratio */
+    margin: 10px;
+}
+.user-info img {
+  
+}
 
-  .user-info img {
-    width: 90%;
-  }
+ 
 
   .topnav-right {
     float: right;
   }
 
-  .featured-thumb .featured {
-    position: absolute;
-    top: 30px;
-    left: -50px;
-    z-index: 99;
-    width: 200px;
-    line-height: 30px;
-    text-align: center;
-    -webkit-transform: rotate(-42deg);
-    -o--transform: rotate(-42deg);
-    -moz--transform: rotate(-42deg);
-    -ms--transform: rotate(-42deg);
-    transform: rotate(-42deg);
+  .full-row {
+    position: relative;
+    width: 100%;
+    padding: 50px 0;
   }
-  .featured-thumb .sale {
-    padding: 5px 15px;
-    border-radius: 8px;
-    z-index: 99;
-    position: absolute;
-    top: 15px;
-    right: 15px;
+  .banner-full-row {
+    position: relative;
+    width: 100%;
+    padding: 100px 0;
   }
-  .featured-thumb .price,
-  .featured-thumb .appartment {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 99;
-    font-size: 21px;
+
+  .hover-zoomer img {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
   }
-  .featured-thumb .price.right {
-    left: inherit;
-    right: 20px;
+  .hover-zoomer:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
   }
-  .featured-thumb .price span {
-    font-size: 13px;
-    display: block;
-  }
-  .featured-thumb .starmark {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    font-size: 21px;
-    z-index: 99;
-  }
-  .featured-thumb .starmark.top {
-    bottom: inherit;
-    top: 15px;
-    right: 120px;
-  }
-  .featured-thumb .location svg {
-    font-size: 14px;
-  }
-  .property-quantity li,
-  .featured-thumb .quantity li {
-    display: inline-block;
-    font-weight: 500;
-    padding-bottom: 20px;
-    padding-right: 15px;
-  }
-  .property-quantity li span,
-  .featured-thumb .quantity li span {
-    display: table;
-    padding-bottom: 5px;
-  }
-  .featured-thumb.list {
-    display: flex;
-  }
-  .featured-thumb.list .image-area {
-    width: 40%;
-    float: left;
-  }
-  .featured-thumb.list .featured-thumb-data {
-    width: 60%;
-    float: right;
-  }
-  .featured-thumb.list .quantity li span {
-    display: inherit;
-  }
+
+  .hover-shadow:hover,
+.shadow-one {
+  -webkit-box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.featured-thumb .featured {
+  position: absolute;
+  top: 30px;
+  left: -50px;
+  z-index: 99;
+  width: 200px;
+  line-height: 30px;
+  text-align: center;
+  -webkit-transform: rotate(-42deg);
+  -o--transform: rotate(-42deg);
+  -moz--transform: rotate(-42deg);
+  -ms--transform: rotate(-42deg);
+  transform: rotate(-42deg);
+}
+.featured-thumb .sale {
+  padding: 5px 15px;
+  border-radius: 8px;
+  z-index: 99;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.featured-thumb .price,
+.featured-thumb .appartment {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 99;
+  font-size: 21px;
+}
+.featured-thumb .price.right {
+  left: inherit;
+  right: 20px;
+}
+.featured-thumb .price span {
+  font-size: 13px;
+  display: block;
+}
+.featured-thumb .starmark {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 21px;
+  z-index: 99;
+}
+.featured-thumb .starmark.top {
+  bottom: inherit;
+  top: 15px;
+  right: 120px;
+}
+.featured-thumb .location svg {
+  font-size: 14px;
+}
+.property-quantity li,
+.featured-thumb .quantity li {
+  display: inline-block;
+  font-weight: 500;
+  padding-bottom: 20px;
+  padding-right: 15px;
+}
+.property-quantity li span,
+.featured-thumb .quantity li span {
+  display: table;
+  padding-bottom: 5px;
+}
+.featured-thumb.list {
+  display: flex;
+}
+.featured-thumb.list .image-area {
+  width: 40%;
+  float: left;
+}
+.featured-thumb.list .featured-thumb-data {
+  width: 60%;
+  float: right;
+}
+.featured-thumb.list .quantity li span {
+  display: inherit;
+}
+.location-thumb {
+  position: absolute;
+  text-align: center;
+}
+
+.items-list tr {
+  border-bottom: 10px solid #ececec;
+  background-color: #fff;
+}
+.items-list.bg-transparent tr {
+  background-color: transparent;
+  border-bottom: 1px solid #ececec;
+}
+.items-list tr td,
+.items-list tr th {
+  padding: 20px;
+  font-weight: 400;
+}
+.items-list td img {
+  width: 200px;
+  float: left;
+  margin-right: 15px;
+}
+.font-18 {
+  font-size: 18px;
+}
+.bg-secondary {
+  background-color: #343434 !important;
+}
+
+
+  	.hoverTable{
+		width:100%; 
+		border-collapse:collapse; 
+	}
+	.hoverTable td{ 
+		padding:7px; border:#4e95f4 1px solid;
+	}
+	/* Define the default color for all the table rows */
+	.hoverTable tr{
+		background: #b8d1f3;
+	}
+	/* Define the hover highlight color for the table row */
+    .hoverTable tr:hover {
+          background-color: #ffff99;
+    }
+
+    .foto_style img {
+      width: 250px; 
+      height:250px;
+      border-radius: 10px;
+    }
+    
+    .img_style img {
+      width: 400px; 
+      height:400px;
+      border-radius: 0px;
+      align-items: center;
+    
+    }
+    .size{
+      width: 400px; 
+      height:150px;
+
+    }​
+

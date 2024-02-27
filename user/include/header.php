@@ -84,7 +84,7 @@
             <a class="nav-link me-4 text-light" href="news.php">News</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href="cal.php">Calculator</a>
+            <a class="nav-link me-4 text-light" href="calc2.php">Calculator</a>
           </li>
           <li class="nav-item">
             <a href="submitprop.php">

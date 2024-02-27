@@ -103,8 +103,8 @@ if(isset($_POST['insert']))
                                 while($row=mysqli_fetch_array($query))
                                 {
                             ?>
-                            <img src="/uprofile/pp<?php echo $row['5']; ?>">
-                    <div class="user-info mt-md-50"> <img src="/uprofile/pp/ <?php echo $row['5'];?>" alt="userimage">
+                            
+                            <div class="foto_style img mt-md-50"> <img src="uprofile/pp/<?php echo $row['5'];?>" alt="userimage">
                         <div class="mb-4 mt-3">
                         </div> 
 

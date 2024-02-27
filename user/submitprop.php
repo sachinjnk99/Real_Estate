@@ -31,7 +31,7 @@ if(isset($_POST['add']))
 	//$loc=$_POST['loc'];
 	
 	$status=$_POST['status'];
-	$uid=$_SESSION['uid'];
+	$uid=$_SESSION['u_id'];
 	//$feature=$_POST['feature'];
 	
 	$totalfloor=$_POST['totalfl'];
@@ -42,31 +42,20 @@ if(isset($_POST['add']))
 	$aimage1=$_FILES['image1']['name'];
 	$aimage2=$_FILES['image2']['name'];
 	$aimage3=$_FILES['image3']['name'];
-	//$aimage4=$_FILES['image4']['name'];
 	
-	//$fimage=$_FILES['fimage']['name'];
-	//$fimage1=$_FILES['fimage1']['name'];
-	//$fimage2=$_FILES['fimage2']['name'];
 	
 	$temp_name  =$_FILES['image']['tmp_name'];
 	$temp_name1 =$_FILES['image1']['tmp_name'];
 	$temp_name2 =$_FILES['image2']['tmp_name'];
 	$temp_name3 =$_FILES['image3']['tmp_name'];
-	//$temp_name4 =$_FILES['aimage4']['tmp_name'];
 	
-	//$temp_name5 =$_FILES['fimage']['tmp_name'];
-	//$temp_name6 =$_FILES['fimage1']['tmp_name'];
-	//$temp_name7 =$_FILES['fimage2']['tmp_name'];
 	
-	move_uploaded_file($temp_name,"property/$aimage");
-	move_uploaded_file($temp_name1,"property/$aimage1");
-	move_uploaded_file($temp_name2,"property/$aimage2");
-	move_uploaded_file($temp_name3,"property/$aimage3");
-	//move_uploaded_file($temp_name4,"property/$aimage4");
+	move_uploaded_file($temp_name,"property/prop/$aimage");
+	move_uploaded_file($temp_name1,"property/prop/$aimage1");
+	move_uploaded_file($temp_name2,"property/prop/$aimage2");
+	move_uploaded_file($temp_name3,"property/prop/$aimage3");
+
 	
-	//move_uploaded_file($temp_name5,"admin/property/$fimage");
-	//move_uploaded_file($temp_name6,"admin/property/$fimage1");
-	//move_uploaded_file($temp_name7,"admin/property/$fimage2");
 	
 	$sql="insert into property (title,pcontent,type,bhk,stype,bedroom,bathroom,balcony,floor,size,price,state, district, city,image,image1,image2,image3,status,totalfloor,u_id)
 	values('$title','$content','$ptype','$bhk','$stype','$bed','$bath','$balc','$floor','$asize','$price','$state',' $dist','$city','$aimage','$aimage1','$aimage2','$aimage3','$status','$totalfloor','$uid')";
@@ -110,9 +99,10 @@ if(isset($_POST['add']))
             <hr class="bg-dark">
             <h4 class="card-title text-left mb-4 text-dark">Basic Details</h4>
             <form method="post" enctype="multipart/form-data">
+              <!--
               <div>
                 <input class="form-control" value="<?php echo $u_id;?>" required name="uid" type="hidden">
-              </div>
+              </div> -->
 
               <div class="row mt-3">
                 <div class="col">
@@ -333,6 +323,8 @@ if(isset($_POST['add']))
         </div>
       </div>
     </div>
+  </div>
+  </div>
   </div>
 </form>
 
