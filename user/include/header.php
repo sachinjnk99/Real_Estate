@@ -125,35 +125,6 @@
           
         </ul>
 
-<!--
-        <form class="d-flex">
-          <?php  
-          if(isset($_SESSION['u_email'])){ ?>
-          <a href="logout.php">
-          <button class="btn btn-danger me-2" type="submit">Logout</button>
-          </a>
-
-          &nbsp;&nbsp;
-          <?php } else { ?>
-            <a href="login.php">
-          <button class="btn btn-info me-2" type="submit">Login</button>
-            </a> &nbsp;&nbsp;
-            <a href="signup.php">
-          <button class="btn btn-info me-2" type="submit">Register</button>
-            </a>
-
-          <form href="login.php">
-          <button class="btn btn-success me-2" type="submit">Login</button>
-          </form> &nbsp;&nbsp;
-          <a href="signup.php">
-          <button class="btn btn-info me-2" type="submit">Signup</button>
-          <?php } ?>
-          </a>
-
-
-        </form>
-          -->
-
           </div>  
   </nav>
 
