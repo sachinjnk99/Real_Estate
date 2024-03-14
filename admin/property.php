@@ -32,6 +32,10 @@ include("config.php");
 .bg{
     background-color: green;
 }
+.bg2{
+    background-color: red;
+    
+}
 
 .update-btn{
     background-color: green;
@@ -61,9 +65,11 @@ td form {
         </div>
 
         <div class="content-2">
-            <div class="recent-payments">
-                <div class="title">
-                    <h2 class="text" >User Details</h2>   
+            <div class="recent-payments ">
+                <div class="title bg2">
+                    <h2 class="text" >Properties Details</h2>   
+                    <a href=""><button class="btn1 btn-sucess float-right bg2">Delete</button></a>
+                    
                 </div>
 
 <table id="basic-datatable" class="table table-bordered table-hover">

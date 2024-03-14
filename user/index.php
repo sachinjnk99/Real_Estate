@@ -12,6 +12,9 @@ include("config.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="font/css/all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <style>
         .overlay-black::before {
   display: block;
@@ -38,8 +41,8 @@ include("config.php");
                 <div class="row h-100 align-items-center">
                     <div class="col-lg-12">
                         <div class="text-white">
-                            <h1 class="mb-4"><span class="text-warning">HELP YOU </span><br>
-                            To Find Better Property</h1>
+                            <h1 class="mb-4"><span class="text-warning">Find Your</span><br>
+                            Dream Property</h1>
                             <form method="post" action="propertygrid.php">
                                 <div class="row">
                                     <div class="col-md-6 col-lg-2">
@@ -79,6 +82,8 @@ include("config.php");
             </div>
         </div>
         <!--	Banner End  -->
-    <?php include("include/footer.html");?>
+        <h4 class="double-down-line-left text-secondary position-relative mb-4">Recently Added Property</h4>
+        <?php include("property1.php");?>
+    
 </body>
 </html>

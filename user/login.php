@@ -48,6 +48,7 @@ if(isset($_REQUEST['login']))
         }
     </style>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="font/css/all.css">
 </head>
 
 <body>
@@ -70,7 +71,7 @@ if(isset($_REQUEST['login']))
                            
                                 <div class="form-outline mb-4 pt-4">
                                     <label class="form-label text-dark" for="form2Example11">Email</label>
-                                    <input type="text" id="email" name="email" class="form-control"
+                                    <input type="text" id="email" name="email" class="form-control" 
                                         placeholder="Email " />
 
                                 </div>

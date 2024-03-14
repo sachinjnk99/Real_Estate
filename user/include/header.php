@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -55,7 +56,7 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
       <a class="ml-2" href="front.html">
-        <img src="img/logo.png" class="me-3 rounded-circle " alt="logo" style="height:75px;  ">
+        <img src="img/logo124.png" class="me-3  " alt="logo" style="height:80px; width: 200px; ">
 
         <a class="navbar-brand text-light" href="#"></a>
       </a>
@@ -105,7 +106,7 @@
         ?>
             <div class="dropdown">
               <li class="nav-item right">
-              <a class="nav-link me-4 text-light right " href="#">My Account</a>
+              <a class="nav-link me-4 text-light right " href="#"> <i class="fa-solid fa-user"></i>&nbsp; My Account</a>
               </li>
               <div class="dropdown-content">
               <a  href="profile.php">Profile</a>
