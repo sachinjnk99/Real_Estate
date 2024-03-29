@@ -55,7 +55,7 @@ include("config.php");
                   <div class="featured-thumb-data shadow-one">
                     <div class="p-4">
                       <h5 class="text-secondary hover-text-success mb-2 text-capitalize "><a
-                          href="propertydetail.php?pid=<?php echo $row['0'];?>"> <?php echo $row['1'];?></a></h5>
+                          href="property-details.php?pid=<?php echo $row['0'];?>"> <?php echo $row['1'];?></a></h5>
                           
                       <span class="location text-capitalize  "><i class="fas fa-map-marker-alt text-success"></i>
                         <?php echo $row['15'];?>
