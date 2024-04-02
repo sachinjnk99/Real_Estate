@@ -15,16 +15,21 @@ include('config.php');
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     
     <link rel="stylesheet" type="text/css" href="font/css/all.css">
 
     <style>
   h3 {
-    font-size: 20px;
+    font-size: 15px;
+    font-family: arial, sans-serif ,  verdana;
+    font-family:;
+  font-size: 20px;
+    
   }
 
   h4  {
-    font-size: 20px;
+    font-size: 15px;
   }
 
   table {
@@ -54,7 +59,7 @@ include('config.php');
     color: #d17581;
 }
 .card1{
-  background:red;
+  background:#ebe6e6 ;
   
 }
 </style>
@@ -106,6 +111,17 @@ include('config.php');
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
+        </div>
+        <div>
+        
+
+<table>
+
+        <tr>
+              <td><h3 class="text-muted">Description:</h3></td>
+              <td><h4><small><?php echo $row['2']; ?></h4></td>
+            </tr>            
+          </table>
       </div>
         
 
@@ -113,7 +129,7 @@ include('config.php');
 
 </div>
 <div class="col-sm-6">
-  <center><h2><?php echo $row['3'] ?></h2></center>
+  <center><h2 class="text-uppercase"><?php echo $row['3'] ?></h2></center>
   <div class="row">
     <div class="col-sm-6">
 
@@ -121,44 +137,41 @@ include('config.php');
       <div class="col-sm-6">
           <table>
             <tr>
-              <td><h3>Country:</h3></td>
+              <td><h3 class="text-muted">Country:</h3></td>
               <td><h4> Nepal<?php echo $row['0']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Province:</h3></td>
-              <td><h4><?php echo $row['13']; ?></h4></td>
+              <td><h3 class="text-muted">Province:</h3></td>
+              <td><h4><small><?php echo $row['13']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Zone:</h3></td>
-              <td><h4><?php echo $row['15']; ?></h4></td>
+              <td><h3 class="text-muted">Zone:</h3></td>
+              <td><h4><small><?php echo $row['15']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>District:</h3></td>
-              <td><h4><?php echo $row['14']; ?></h4></td>
+              <td><h3 class="text-muted">District:</h3></td>
+              <td><h4><small><?php echo $row['14']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>City:</h3></td>
-              <td><h4><?php echo $row['15']; ?></h4></td>
+              <td><h3 class="text-muted">City:</h3></td>
+              <td><h4><small><?php echo $row['15']; ?></h4></td>
+            </tr>
+           
+            <tr>
+              <td><h3 class="text-muted">Ward No.:</h3></td>
+              <td><h4><small><?php echo $row['0']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>VDC/Municipality:</h3></td>
-              <td><h4><?php echo $row['15']; ?></h4></td>
+              <td><h3 class="text-muted">Tole:</h3></td>
+              <td><h4><small><?php echo $row['0']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Ward No.:</h3></td>
-              <td><h4><?php echo $row['0']; ?></h4></td>
+              <td><h3 class="text-muted">Mobile no.:</h3></td>
+              <td><h4><small><?php echo $row['0']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Tole:</h3></td>
-              <td><h4><?php echo $row['0']; ?></h4></td>
-            </tr>
-            <tr>
-              <td><h3>Contact No.:</h3></td>
-              <td><h4><?php echo $row['0']; ?></h4></td>
-            </tr>
-            <tr>
-              <td><h3>Estimated Price:</h3></td>
-              <td><h4>Rs.<?php echo $row['12']; ?></h4></td>
+              <td><h3 class="text-muted">Estimated Price:</h3></td>
+              <td><h4><small>Rs.<?php echo $row['12']; ?></h4></td>
             </tr>
           </table>
         </div>
@@ -168,32 +181,32 @@ include('config.php');
     <div class="col-sm-6">
       <table>
             <tr>
-              <td><h3>Total Rooms:</h3></td>
-              <td><h4><?php echo $row['0']; ?></h4></td>
+              <td><h3 class="text-muted">Total Rooms:</h3></td>
+              <td><h4><small><?php echo $row['0']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Bedrooms:</h3></td>
-              <td><h4><?php echo $row['6']; ?></h4></td>
+              <td><h3 class="text-muted">Bedrooms:</h3></td>
+              <td><h4><small><?php echo $row['6']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Balcony:</h3></td>
-              <td><h4><?php echo $row['8']; ?></h4></td>
+              <td><h3 class="text-muted">Balcony:</h3></td>
+              <td><h4><small><?php echo $row['8']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Kitchen:</h3></td>
-              <td><h4><?php echo $row['9']; ?></h4></td>
+              <td><h3 class="text-muted">Kitchen:</h3></td>
+              <td><h4><small><?php echo $row['9']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Bathroom:</h3></td>
-              <td><h4><?php echo $row['7']; ?></h4></td>
+              <td><h3 class="text-muted">Bathroom:</h3></td>
+              <td><h4><small><?php echo $row['7']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Booked:</h3></td>
-              <td><h4><?php echo $row['0']; ?></h4></td>
+              <td><h3 class="text-muted">Booked:</h3></td>
+              <td><h4><small><?php echo $row['0']; ?></h4></td>
             </tr>
             <tr>
-              <td><h3>Description:</h3></td>
-              <td><h4><?php echo $row['2']; ?></h4></td>
+              <td><h3 class="text-muted">Description:</h3></td>
+              <td><h4><small><?php echo $row['2']; ?></h4></td>
             </tr>            
           </table>
     </div>
@@ -205,6 +218,68 @@ include('config.php');
 </div>
 </div>
 </div></div>
+
+
+<div id="page-wrapper">
+    <div class="row">
+     
+
+
+      <div class="full-row">
+        <div class="container">
+          <div class="col-lg-12">
+            <div class="row">
+              <?php 
+                    $query=mysqli_query($con,"SELECT property.*, user.u_name, user.u_type, user.uimage FROM `property`,`user` WHERE property.u_id = user.u_id && Action = 'approved' ORDER BY u_id DESC LIMIT 9");
+                        while($row=mysqli_fetch_array($query))
+                        {
+                    ?>
+
+              <div class="col-md-4">
+                <div class="featured-thumb hover-zoomer mb-4">
+
+                  <div class="overlay-black overflow-hidden position-relative img_style img"> <img
+                      src="property/prop/<?php echo $row['16'];?>" alt="pimage">
+
+                    <div class="sale bg-success text-white">For
+                      <?php echo $row['5'];?>
+                    </div>
+                    <div class="price text-danger text-capitalize"><b>Rs.
+                        <?php echo $row['12'];?> <span class="text-primary">
+                          <?php echo $row['11'];?> Sqft
+                        </span>
+                      </b></div>
+
+                  </div>
+
+                  <div class="featured-thumb-data shadow-one">
+                    <div class="p-4">
+                      <h5 class="text-secondary hover-text-success mb-2 text-capitalize"><a
+                          href="property-details.php?pid=<?php echo $row['0'];?>">
+                          <?php echo $row['1'];?>
+                        </a></h5>
+                      <span class="location text-capitalize"><i class="fas fa-map-marker-alt text-success"></i>
+                        <?php echo $row['15'];?>
+                      </span>
+                    </div>
+                    <div class="px-4 pb-4 d-inline-block w-100">
+                      <div class="float-left text-capitalize"><i class="fas fa-user text-success mr-1"></i>By :
+                        <?php echo $row['u_name'];?>
+                      </div>
+                      <div class="float-right"><i class="far fa-calendar-alt text-success mr-1"></i>
+                        <?php echo date('D-M-Y', strtotime($row['date']));?>
+                      </div>
+                    </div>
+                    <div class="mb-4 <br>"> </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <?php } ?>
+            </div>
+            </div>
+              </div>
 
 
 

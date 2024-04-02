@@ -57,8 +57,8 @@ if(isset($_POST['add']))
 
 	
 	
-	$sql="insert into property (title,pcontent,type,bhk,stype,bedroom,bathroom,balcony,floor,size,price,state, district, city,image,image1,image2,image3,status,totalfloor,u_id)
-	values('$title','$content','$ptype','$bhk','$stype','$bed','$bath','$balc','$floor','$asize','$price','$state',' $dist','$city','$aimage','$aimage1','$aimage2','$aimage3','$status','$totalfloor','$uid')";
+	$sql="insert into property (title,pcontent,type,bhk,stype,bedroom,bathroom,balcony,floor,size,price,state, district, city,image,image1,image2,image3,status,totalfloor,u_id,Action)
+	values('$title','$content','$ptype','$bhk','$stype','$bed','$bath','$balc','$floor','$asize','$price','$state',' $dist','$city','$aimage','$aimage1','$aimage2','$aimage3','$status','$totalfloor','$uid','pending')";
 	$result=mysqli_query($con,$sql);
 	if($result)
 		{

@@ -50,9 +50,22 @@ h3 {
     padding: 5px 10px;
     text-align: center;
 }
+.btn2 {
+    background: #aabc07;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.btn2:hover {
+    color:#95c812;
+    background: rgb(4, 63, 15);
+    padding: 3px 8px;
+    border: 2px solid #1db99a;
+}
 .btn1:hover {
     color:#1db99a;
-    background: white;
+    background: rgb(4, 63, 15);
     padding: 3px 8px;
     border: 2px solid #1db99a;
 }

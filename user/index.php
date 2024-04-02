@@ -36,7 +36,7 @@ include("config.php");
     <?php include("include/header.php");?>
     
      <!--	Banner Start   -->
-     <div class="overlay-black w-100 banner1 position-relative pt-4" style="background-image: url('img/banner1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+     <div class="overlay-black w-100 banner1 position-relative pt-5" style="background-image: url('img/banner1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
             <div class="container h-100 mt-4">
                 <div class="row h-100 align-items-center">
                     <div class="col-lg-12">

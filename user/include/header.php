@@ -70,7 +70,7 @@
             <a class="nav-link active me-4 text-light" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href="about.php">About</a>
+            <a class="nav-link me-4 text-light" href="about1.php">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link me-4 text-light" href="contact.php">Contact</a>
@@ -78,11 +78,13 @@
           <li class="nav-item">
             <a class="nav-link me-4 text-light" href="property.php">Property</a>
           </li>
+          
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href="notice.php">Notice</a>
+            <a class="nav-link me-4 text-light" href="news1.php">News</a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href="news.php">News</a>
+            <a class="nav-link me-4 text-light" href="agent.php">Agent</a>
           </li>
           <li class="nav-item">
             <a class="nav-link me-4 text-light" href="calc2.php">Calculator</a>
@@ -110,7 +112,7 @@
               </li>
               <div class="dropdown-content">
               <a  href="profile.php">Profile</a>
-              <a href="#">Settings</a>
+              <a href="myproperty.php">My property</a>
               <a href="logout.php">Logout</a>
               </div>
             </div>

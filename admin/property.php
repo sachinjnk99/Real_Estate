@@ -67,8 +67,8 @@ td form {
         <div class="content-2">
             <div class="recent-payments ">
                 <div class="title bg2">
-                    <h2 class="text" >Properties Details</h2>   
-                    <a href=""><button class="btn1 btn-sucess float-right bg2">Delete</button></a>
+                    <h2 class="text-white" >Pending Properties Details</h2>   
+                    <a href=""><button class="btn1 btn-sucess float-right bg2">Add Property</button></a>
                     
                 </div>
 
@@ -94,7 +94,7 @@ td form {
         <tbody>
         <?php
                 
-            $query=mysqli_query($con,"select * from property");
+            $query=mysqli_query($con,"select * from property Where Action='pending'");
             $cnt=1;
             while($row=mysqli_fetch_row($query))
                 {
@@ -109,10 +109,11 @@ td form {
                 <td><?php echo $row['12']; ?></td>
                 <td><?php echo $row['15']; ?></td>
                 <td><?php echo $row['23']; ?></td>
-                <td><?php echo $row['20']; ?></td>
+                <td><?php echo $row['24']; ?></td>
                 
-                <td><a href="propertyedit.php?id=<?php echo $row['0'];?>"><button class="btn btn-sucess">Edit</button></a>
-                <a href="propertydelete.php?id=<?php echo $row['0'];?>"><button class="btn btn-danger">Delete</button></a></td>
+                <td><a href="propertyedit.php?id=<?php echo $row['0'];?>"><button class="btn btn-sucess btn1">View</button></a>
+                <a href="propertydelete.php?id=<?php echo $row['0'];?>"><button class="btn btn-danger">Delete</button></a>
+                <a href="propertydelete.php?id=<?php echo $row['0'];?>"><button class="btn btn-sucess btn1">Approved</button></a></td>
             </tr>
             <?php
             $cnt=$cnt+1;
@@ -123,6 +124,72 @@ td form {
     </table>
     </div>
             </div>
+         
+    
+
+    
+
+          <div class="content-2">
+            <div class="recent-payments ">
+                <div class="title bg">
+                    <h2 class="text-white" > Approved Properties Details</h2>   
+                    
+                    
+                </div>
+
+<table id="basic-datatable" class="table table-bordered table-hover">
+        <thead>
+            <tr class="bg">
+                <th>#</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>BHK</th>
+                <th>SR</th>
+                <th>Area</th>
+                <th>Price</th>
+                <th>Location</th>
+                <th>Added Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+    
+    
+        <tbody>
+        <?php
+                
+            $query=mysqli_query($con,"select * from property Where Action='approved'");
+            $cnt=1;
+            while($row=mysqli_fetch_row($query))
+                {
+        ?>
+            <tr>
+                <td><?php echo $cnt; ?></td>
+                <td><?php echo $row['1']; ?></td>
+                <td><?php echo $row['3']; ?></td>
+                <td><?php echo $row['4']; ?></td>
+                <td><?php echo $row['5']; ?></td>
+                <td><?php echo $row['11']; ?></td>
+                <td><?php echo $row['12']; ?></td>
+                <td><?php echo $row['15']; ?></td>
+                <td><?php echo $row['23']; ?></td>
+                <td><?php echo $row['24']; ?></td>
+                
+                <td><a href="propertyedit.php?id=<?php echo $row['0'];?>"><button class="btn btn-sucess btn1">Edit</button></a>
+                <a href="propertydelete.php?id=<?php echo $row['0'];?>"><button class="btn btn-danger">Delete</button></a>
+                </td>
+            </tr>
+            <?php
+            $cnt=$cnt+1;
+            } 
+            ?>
+           
+        </tbody>
+    </table>
+    </div>
+            </div>
+          </div>
           </div>
     
 

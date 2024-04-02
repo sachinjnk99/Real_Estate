@@ -3,33 +3,47 @@ session_start();
 include("config.php");
 $error="";
 $msg="";
-if(isset($_REQUEST['login']))
+if(isset($_REQUEST['reset']))
 {
-	$email=$_REQUEST['email'];
-	$password=$_REQUEST['password'];
-	//$pass= sha1($pass);
-	
-	if(!empty($email) && !empty($password))
-	{
-		$sql = "SELECT * FROM user where u_email='$email' && u_password='$password'";
-		$result=mysqli_query($con, $sql);
-		$row=mysqli_fetch_array($result);
-		   if($row){
-			   
-				$_SESSION['u_id']=$row['u_id'];
-				$_SESSION['u_email']=$email;
-				header("location:index.php");
-				
-		   }
-		   else{
-			   $error = "<p class='alert alert-warning'>Email or Password doesnot match!</p> ";
-		   }
-	}else{
-		$error = "<p class='alert alert-warning'>Please Fill all the fields</p>";
-	}
-}
-?>
+	// Get form data
+$email = $_POST['email'];
+$new_password = $_POST['password'];
 
+
+// Query database for user with matching email
+$sql = "SELECT * FROM user WHERE u_email='$email'";
+$result=mysqli_query($con, $sql);
+		
+
+// If email matches a user in the database, update their password
+if ($result->num_rows > 0) {
+    $row=mysqli_fetch_array($result);
+    $user_id = $row['u_id'];
+    $sql = "UPDATE user SET u_password='$new_password' WHERE u_id='$user_id'";
+    if ($con->query($sql) === TRUE) {
+        echo '<script>alert("Password updated successfully.");</script>';
+        // redirect to login page
+        echo '<script>window.location.href = "login.php";</script>';
+
+        //echo "<script>alert('Password updated successfully.');</script>";
+       // header("Location: login1.html");
+        //exit();
+    } else {
+        echo "<script>alert('Error updating password'); window.location.href='forget.php';</script>";
+
+        //echo "<script>alert('Error updating password: " . $conn->error . "');</script>";
+       // header("Location: respassword.html");
+       // exit();
+    }
+} else {
+    echo "<script>alert('Email not found in database.'); window.location.href='forget.php';</script>";
+    //echo "<script>alert('Email not found in database.');</script>";
+    //header("Location: respassword.html");
+    //exit();
+}}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,39 +69,41 @@ if(isset($_REQUEST['login']))
 <?php include("include/header.php");?>
     <div class="container pb-4">
         <div class="row justify-content-center ">
-            <div class="col-lg-6 mt-4">
+            <div class="col-lg-4 mt-4">
                 <div class="card bg-light" style="border-radius: 10px;">
                     <div class="card-body sign">
 
                         <form method="post" enctype="multipart/form-data">
-                            <h4 class="text-center text-dark">Please login to your account</h4>
+                            <h4 class="text-center text-dark">Reset Your Password</h4>
                             <?php echo $error; ?><?php echo $msg; ?>
                             <hr>
                            
                                 <div class="form-outline mb-4 pt-4">
                                     <label class="form-label text-dark" for="form2Example11">Email</label>
                                     <input type="text" id="email" name="email" class="form-control" 
-                                        placeholder="Email " />
+                                        placeholder="Enter Your Registered Email" />
 
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label text-dark" for="form2Example22">Password</label>
+                                    <label class="form-label text-dark" for="form2Example22">New Password</label>
                                     <input type="password" id="password" name="password" class="form-control"
-                                        placeholder="Password" />
+                                        placeholder="Set New Password" />
 
                                 </div>
 
+                              
+
                                 <div class="text-center">
-                                    <button type="submit" name="login"
-                                        class="btn btn-primary btn-lg btn-block ">Login</button>
+                                    <button type="submit" name="reset"
+                                        class="btn btn-primary btn-lg btn-block ">Reset Password</button>
                                 </div>
                             
                             <br>
 
 
                             <p class="text-center text-dark">Don't have an account? <a href="signup.php">Signup</a> </p>
-                            <p class="text-center text-dark"> <a href="forget.php">Forget Password</a></p>
+                            <p class="text-dark text-center">Already Regisrter? <a href="login.php">Click Here</p></a>
 
                         </form>
 

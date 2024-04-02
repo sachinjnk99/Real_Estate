@@ -95,12 +95,9 @@ if (isset($_POST['reg'])) {
 <body>
 <?php include("include/header.php");?>
   <br>
-  <div class="container">
-    <div class="row float-left">
-      <img src="img/logo.png" style="width:100px; object-fit: fill; " alt="No Image">
-    </div>
-  </div>
-  <div class="container">
+ 
+
+  <div class="container pb-5">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="card " style="border-radius: 10px;">

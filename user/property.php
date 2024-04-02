@@ -30,7 +30,7 @@ include("config.php");
           <div class="col-lg-12">
             <div class="row">
               <?php 
-                    $query=mysqli_query($con,"SELECT property.*, user.u_name, user.u_type, user.uimage FROM `property`,`user` WHERE property.u_id = user.u_id");
+                    $query=mysqli_query($con,"SELECT property.*, user.u_name, user.u_type, user.uimage FROM `property`,`user` WHERE property.u_id = user.u_id && Action = 'approved'");
                         while($row=mysqli_fetch_array($query))
                         {
                     ?>
