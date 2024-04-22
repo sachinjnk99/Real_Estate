@@ -9,7 +9,7 @@ include("config.php");
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>calculator</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -19,8 +19,8 @@ include("config.php");
 <body>
   <?php include("include/header.php");?>
 
-  <div class="container">
-    <div class="row justify-content-center">
+  <div class="container mt-5 pt-5">
+    <div class="row justify-content-center py-5">
       <div class="col-lg-6">
         <div class="card " style="border-radius: 10px;">
           <div class="card-body signup ">
@@ -38,8 +38,8 @@ include("config.php");
                 </div>
 
                 <div class="mt-3">
-                  <label class="text-dark" class="form-label">Duration Year</label>
-                  <input type="text" class="form-control" placeholder="Enter Duration Year" aria-label="month"
+                  <label class="text-dark" class="form-label">Duration Months</label>
+                  <input type="text" class="form-control" placeholder="Enter Duration months" aria-label="month"
                     name="month" required>
                 </div>
 

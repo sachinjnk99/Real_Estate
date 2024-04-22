@@ -1,8 +1,14 @@
 <?php 
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
 session_start();
-isset($_SESSION["u_email"]);
-include('config.php');
- ?>
+include("config.php");
+if(!isset($_SESSION['u_email']))
+{
+	header("location:login.php");
+}								
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +35,7 @@ include('config.php');
     padding-top: 5px;
 }
 
+
 .full-row {
     position: relative;
     width: 100%;
@@ -39,58 +46,22 @@ include('config.php');
 
 <body>
 <?php include("include/header.php");?>     
-<div class="container mt-5 pt-5">
-      <div class="col-lg-12">
-     
-      <div class="card">
-   
-            <div class="card-body search1">
-<form method="post" action="search-prop.php">
-                                <div class="row justify-content-center">
-                                    <div class="col-sm-6 col-lg-4">
-                                        <div class="form-group">
-                                            <select class="form-control" name="type">
-                                                <option value="">Select Type</option>
-												<option value="House for Sale">House For Sale</option>
-												<option value="Land for sale">Land For Sale</option>
-												<option value="For Rent">For Rent</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4">
-                                        <div class="form-group">
-                                            <select class="form-control" name="stype">
-                                                <option value="">Select Status</option>
-												<option value="rent">Rent</option>
-												<option value="sale">Sale</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 mb-4">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="city" placeholder="Enter City Name" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-lg-2">
-                                        <div class="form-group">
-                                            <button type="submit" name="filter" class="btn btn-warning w-100">Find Property</button>
-                                        </div>
-                                    </div>
-  </form>
-  </div></div></div>
 
-  <div id="page-wrapper">
+
+  <div id="page-wrapper pt-5">
     <div class="row">
       <div class="full-row">
-        <div class="container">
+        <div class="container pt-5 mt-5">
             <div class="justify-content-center">
           <div class="col-lg-12">
             <div class="row">
-              <?php 
-                    $query=mysqli_query($con,"SELECT property1.*, user.u_name, user.u_type, user.uimage FROM `property1`,`user` WHERE property1.uid = user.u_id && p_status = 'approved'");
-                        while($row=mysqli_fetch_array($query))
-                        {
-                    ?>
+            <?php 
+                            
+							$uid=$_SESSION['u_id'];
+							$query=mysqli_query($con,"SELECT property1.*, user.u_name, user.u_type, user.uimage FROM `property1`,`user` WHERE property1.uid = '$uid' AND property1.uid = user.u_id AND p_status = 'approved'");
+								while($row=mysqli_fetch_array($query))
+								{
+							?>
 
               <div class="col-md-4">
                 <div class="featured-thumb hover-zoomer mb-2">
@@ -111,8 +82,8 @@ include('config.php');
                           <?php echo $row['25'];?>-<?php echo $row['24'];?>
                         </span>
                       </span>
-                      <h5 class="text-secondary hover-text-success mb-2 text-capitalize ">
-                        <a href="prop-details.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['u_name'];?>"> <?php echo $row['4'];?></a></h5>
+                      <h5 class="text-secondary hover-text-success mb-2 text-capitalize "><a
+                          href="prop-details.php?pid=<?php echo $row['0'];?>"> <?php echo $row['4'];?></a></h5>
                        
                           
                       <span class="location text-capitalize  "><i class="fas fa-map-marker-alt text-success"></i>
@@ -126,6 +97,14 @@ include('config.php');
                       <div class="float-right"><i class="far fa-calendar-alt text-success mr-1"></i>
                         <?php echo date('D-M-Y', strtotime($row['date']));?>
                       </div>
+                     <a href="update-prop.php?pid=<?php echo $row['pid'];?>">
+                      <input type="submit" class="btn btn-success mt-5" name="insert" value="Update Property">
+                                </a>
+
+                    <a href="property-delete.php?pid=<?php echo $row['pid'];?>">
+                      <div class="float-right" >
+                      <input type="submit" class="btn btn-danger mt-5" name="insert" value="Delect Property">
+                                </div></a>
                     </div>
                     <div class="mb-4 <br>"> </div>
 
@@ -137,7 +116,17 @@ include('config.php');
             </div>
             </div> </div> </div> </div>
               </div></div></div></div>
-            
+              
+
+
+
+
+
+
+
+
+
+
 
       <?php include("include/footer.html");?>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

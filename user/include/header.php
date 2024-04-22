@@ -55,7 +55,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
-      <a class="ml-2" href="front.html">
+      <a class="ml-2" href="index.php">
         <img src="img/logo124.png" class="me-3  " alt="logo" style="height:80px; width: 200px; ">
 
         <a class="navbar-brand text-light" href="#"></a>
@@ -70,10 +70,10 @@
             <a class="nav-link active me-4 text-light" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href="about1.php">About</a>
+            <a class="nav-link me-4 text-light" href=".php">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href="contact.php">Contact</a>
+            <a class="nav-link me-4 text-light" href="agency.php">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link me-4 text-light" href="property.php">Property</a>
@@ -84,7 +84,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href="agent.php">Agent</a>
+            <a class="nav-link me-4 text-light" href="agency-details.php">Agencies</a>
           </li>
           <li class="nav-item">
             <a class="nav-link me-4 text-light" href="calc2.php">Calculator</a>
@@ -112,7 +112,8 @@
               </li>
               <div class="dropdown-content">
               <a  href="profile.php">Profile</a>
-              <a href="myproperty.php">My property</a>
+              <a href="appo-view.php">Appointment Request</a>
+              <a href="myproperty1.php">My property</a>
               <a href="logout.php">Logout</a>
               </div>
             </div>

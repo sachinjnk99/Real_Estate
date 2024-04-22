@@ -47,9 +47,9 @@ if(isset($_REQUEST['calc']))
                         <tbody>
 						
 						
-                            <tr class="text-center font-18">
+                            <tr class="text-center">
                                 <td><b>Amount</b></td>
-                                <td><b><?php echo '$'.$amount ; ?></b></td>
+                                <td><b><?php echo 'NRs.'.$amount ; ?></b></td>
                             </tr>
 							<tr class="text-center">
                                 <td><b>Total Duration</b></td>
@@ -61,22 +61,22 @@ if(isset($_REQUEST['calc']))
                             </tr>
 							<tr class="text-center">
                                 <td><b>Total Interest</b></td>
-                                <td><b><?php echo '$'.$interest ; ?></b></td>
+                                <td><b><?php echo 'NRs.'.$interest ; ?></b></td>
                             </tr>
 							<tr class="text-center">
                                 <td><b>Total Amount</b></td>
-                                <td><b><?php echo '$'.$pay ; ?></b></td>
+                                <td><b><?php echo 'NRs.'.$pay ; ?></b></td>
                             </tr>
 							<tr class="text-center">
                                 <td><b>Pay Per Month (EMI)</b></td>
-                                <td><b><?php echo '$'.$month ; ?></b></td>
+                                <td><b><?php echo 'NRs.'.$month ; ?></b></td>
                             </tr>
 							
                         </tbody>
                     </table> 
                     <a href="calc2.php">
                     <div class="text-center mt-4">
-          <button class="btn btn-primary btn-lg btn-block text-center">Calculate Again</button>
+          <button class="btn btn-primary btn-lg btn-block text-center mb-5">Calculate Again</button>
         </div>
 </a>
 					</center>

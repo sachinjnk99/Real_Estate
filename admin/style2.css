@@ -222,32 +222,7 @@
       height:150px;
 
     }​
-/* Default styles for all screen sizes */
-.container {
-  width: 100%; /* Take up full width */
-  padding: 20px;
-  box-sizing: border-box;
-}
 
-.box {
-  width: 100%; /* Take up full width */
-  height: 200px;
-  background-color: #f0f0f0;
-  margin-bottom: 20px;
-}
 
-/* Media query for tablets (768px) */
-@media only screen and (min-width: 768px) {
-  .container {
-    max-width: 768px; /* Limit container width for tablets */
-    margin: 0 auto; /* Center the container */
-  }
-}
+    
 
-/* Media query for desktops (1024px) */
-@media only screen and (min-width: 1024px) {
-  .box {
-    width: 48%; /* Arrange boxes side by side */
-    margin-right: 4%;
-  }
-}

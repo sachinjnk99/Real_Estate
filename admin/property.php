@@ -1,9 +1,4 @@
 <?php 
-ini_set('session.cache_limiter','public');
-session_cache_limiter(false);
-session_start();
-$error="";
-$msg="";
 include("config.php");
 ?>
 <!DOCTYPE html>
@@ -13,8 +8,9 @@ include("config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style1.css">
+
     <title>Document</title>
     <style>
         .delete-btn, .update-btn {
@@ -79,11 +75,11 @@ td form {
                 <th>Title</th>
                 <th>Type</th>
                 <th>BHK</th>
-                <th>SR</th>
+                <th>Condition</th>
                 <th>Area</th>
                 <th>Price</th>
                 <th>Location</th>
-                <th>Added Date</th>
+                <th>Contact</th>
                 <th>Status</th>
                 <th>Action</th>
                 
@@ -92,28 +88,30 @@ td form {
     
     
         <tbody>
-        <?php
-                
-            $query=mysqli_query($con,"select * from property Where Action='pending'");
-            $cnt=1;
-            while($row=mysqli_fetch_row($query))
-                {
-        ?>
+
+        <?php 
+                    $query=mysqli_query($con,"SELECT property1.*, user.u_name, user.u_type, user.uimage FROM `property1`,`user` WHERE property1.uid = user.u_id && p_status = 'pending'");
+                    $cnt=1;
+                        while($row=mysqli_fetch_array($query))
+                        {
+                    ?>
+      
+      
             <tr>
                 <td><?php echo $cnt; ?></td>
-                <td><?php echo $row['1']; ?></td>
-                <td><?php echo $row['3']; ?></td>
+                <td><?php echo $row['2']; ?></td>
                 <td><?php echo $row['4']; ?></td>
+                <td><?php echo $row['13']; ?></td>
                 <td><?php echo $row['5']; ?></td>
-                <td><?php echo $row['11']; ?></td>
-                <td><?php echo $row['12']; ?></td>
-                <td><?php echo $row['15']; ?></td>
-                <td><?php echo $row['23']; ?></td>
-                <td><?php echo $row['24']; ?></td>
+                <td><?php echo $row['25']; ?></td>
+                <td><?php echo $row['21']; ?></td>
+                <td><?php echo $row['19']; ?></td>
+                <td><?php echo $row['38']; ?></td>
+                <td><?php echo $row['42']; ?></td>
                 
-                <td><a href="propertyedit.php?id=<?php echo $row['0'];?>"><button class="btn btn-sucess btn1">View</button></a>
-                <a href="propertydelete.php?id=<?php echo $row['0'];?>"><button class="btn btn-danger">Delete</button></a>
-                <a href="propertydelete.php?id=<?php echo $row['0'];?>"><button class="btn btn-sucess btn1">Approved</button></a></td>
+                <td><a href="view-property.php?pid=<?php echo $row['0'];?>"><button class="btn btn-sucess">View</button></a>
+                <a href="propertydelete.php?pid=<?php echo $row['0'];?>"><button class="btn btn-danger">Delete</button></a>
+        
             </tr>
             <?php
             $cnt=$cnt+1;
@@ -144,11 +142,11 @@ td form {
                 <th>Title</th>
                 <th>Type</th>
                 <th>BHK</th>
-                <th>SR</th>
+                <th>Condition</th>
                 <th>Area</th>
                 <th>Price</th>
                 <th>Location</th>
-                <th>Added Date</th>
+                <th>Contact</th>
                 <th>Status</th>
                 <th>Action</th>
                 
@@ -157,27 +155,26 @@ td form {
     
     
         <tbody>
-        <?php
-                
-            $query=mysqli_query($con,"select * from property Where Action='approved'");
-            $cnt=1;
-            while($row=mysqli_fetch_row($query))
-                {
-        ?>
+        <?php 
+                    $query=mysqli_query($con,"SELECT property1.*, user.u_name, user.u_type, user.uimage FROM `property1`,`user` WHERE property1.uid = user.u_id && p_status = 'approved'");
+                    $cnt=1;
+                        while($row=mysqli_fetch_array($query))
+                        {
+                    ?>
             <tr>
                 <td><?php echo $cnt; ?></td>
-                <td><?php echo $row['1']; ?></td>
-                <td><?php echo $row['3']; ?></td>
+                <td><?php echo $row['2']; ?></td>
                 <td><?php echo $row['4']; ?></td>
+                <td><?php echo $row['13']; ?></td>
                 <td><?php echo $row['5']; ?></td>
-                <td><?php echo $row['11']; ?></td>
-                <td><?php echo $row['12']; ?></td>
-                <td><?php echo $row['15']; ?></td>
-                <td><?php echo $row['23']; ?></td>
-                <td><?php echo $row['24']; ?></td>
+                <td><?php echo $row['25']; ?></td>
+                <td><?php echo $row['21']; ?></td>
+                <td><?php echo $row['19']; ?></td>
+                <td><?php echo $row['38']; ?></td>
+                <td><?php echo $row['42']; ?></td>
                 
-                <td><a href="propertyedit.php?id=<?php echo $row['0'];?>"><button class="btn btn-sucess btn1">Edit</button></a>
-                <a href="propertydelete.php?id=<?php echo $row['0'];?>"><button class="btn btn-danger">Delete</button></a>
+                <td><a href="view-property.php?pid=<?php echo $row['0'];?>"><button class="btn btn-sucess">view</button></a>
+                
                 </td>
             </tr>
             <?php

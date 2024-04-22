@@ -36,22 +36,22 @@ include("config.php");
     <?php include("include/header.php");?>
     
      <!--	Banner Start   -->
-     <div class="overlay-black w-100 banner1 position-relative pt-5" style="background-image: url('img/banner1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+     <div class="overlay-black w-100 banner1 position-relative pt-5 mt-5" style="background-image: url('img/banner1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
             <div class="container h-100 mt-4">
                 <div class="row h-100 align-items-center">
                     <div class="col-lg-12">
                         <div class="text-white">
                             <h1 class="mb-4"><span class="text-warning">Find Your</span><br>
                             Dream Property</h1>
-                            <form method="post" action="propertygrid.php">
+                            <form method="post" action="search-prop.php">
                                 <div class="row">
                                     <div class="col-md-6 col-lg-2">
                                         <div class="form-group">
                                             <select class="form-control" name="type">
                                                 <option value="">Select Type</option>
-												<option value="house">House</option>
-												<option value="flat">Flat</option>
-												<option value="Land">Land</option>
+												<option value="House for Sale">House For Sale</option>
+												<option value="Land for sale">Land For Sale</option>
+												<option value="For Rent">For Rent</option>
                                             </select>
                                         </div>
                                     </div>
@@ -81,8 +81,9 @@ include("config.php");
                 </div>
             </div>
         </div>
+        </div>
         <!--	Banner End  -->
-        <h4 class="double-down-line-left text-secondary position-relative mb-4">Recently Added Property</h4>
+        
         <?php include("property1.php");?>
     
 </body>

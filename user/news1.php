@@ -11,7 +11,7 @@ include("config.php");
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>news</title>
   <link rel="stylesheet" type="text/css" href="font/css/all.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -25,17 +25,28 @@ include("config.php");
       align-items: center;
     
     }
+
+    .container{
+    padding-top: 5px;
+}
+
+
+.full-row {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+  }
   </style>
 </head>
 
 <body>
-  <div id="page-wrapper">
+  <div id="page-wrapper ">
     <div class="row">
       <?php include("include/header.php");?>
       
 
-      <div class="full-row">
-        <div class="container">
+      <div class="full-row mt-5">
+        <div class="container pt-5">
           <div class="col-lg-12">
             <div class="row">
             <h2 class="text-center pb-4">Latest News</h2>
@@ -78,7 +89,7 @@ include("config.php");
               <?php } ?>
             </div>
             </div>
-              </div>
+              </div></div>
        
 
 

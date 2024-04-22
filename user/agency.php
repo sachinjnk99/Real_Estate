@@ -16,11 +16,15 @@ if (isset($_POST['reg'])) {
        $u_password = $_POST['u_password']; //Hash This 
         //$u_password = password_hash($_POST['u_password'], PASSWORD_DEFAULT)
         $u_id = $_POST['u_id'];
-        $u_type = $_POST['u_type'];
+        $u_regi = $_POST['u_regi'];
+        $u_desc = $_POST['u_desc'];
         $uimage=$_FILES['image']['name'];
+        $uimage1=$_FILES['image1']['name'];
 
         $temp_name  =$_FILES['image']['tmp_name'];
+        $temp_name1  =$_FILES['image1']['tmp_name'];
         move_uploaded_file($temp_name,"uprofile/pp/$uimage");
+        move_uploaded_file($temp_name1,"uprofile/pp/$uimage");
 
         //$query = "SELECT * FROM user3 where u_email='$u_email'";
         //$res = $con->query($query);
@@ -49,7 +53,7 @@ if (isset($_POST['reg'])) {
     } else {
 
 
-      $sql="insert into user (u_id, u_name, u_phoneno, u_email, u_password, u_address, u_regi, u_desc, document, uimage, u_type, action) values('$u_id', '$u_name', '$u_phoneno', '$u_email', '$u_password','$u_address','$u_regi', '$u_desc','$doc', '$uimage', 'user','approved')";
+      $sql="insert into user (u_id, u_name, u_phoneno, u_email, u_password, u_address, u_regi, u_desc, document, uimage, u_type, action) values('$u_id', '$u_name', '$u_phoneno', '$u_email','$u_password','$u_address','$u_regi','$u_desc', '$uimage1', '$uimage','agency', 'pending')";
 	    $result=mysqli_query($con,$sql);
 
 
@@ -72,9 +76,9 @@ if (isset($_POST['reg'])) {
         }
     }
 }
+
+
 ?>
-
-
 
 <!doctype html>
 <html lang="en">
@@ -103,7 +107,7 @@ if (isset($_POST['reg'])) {
         <div class="card " style="border-radius: 10px;">
           <div class="card-body signup ">
             
-            <h2 class="card-title text-center mb-4 text-dark"><b>Signup Form</b></h2>
+            <h2 class="card-title text-center mb-4 text-dark"><b>Agency Register</b></h2>
             <?php echo $error; ?><?php echo $msg; ?>
 
             <hr class="bg-dark">
@@ -114,12 +118,25 @@ if (isset($_POST['reg'])) {
 
               <div class="row mt-3">
                 <div class="col">
-                  <label class="text-dark" for="fullname">Full Name</label>
-                  <input type="text" class="form-control" id="name" placeholder="Enter full name" aria-label="First name" name="u_name" required pattern="[a-zA-Z\s\-']{2,}"  required pattern=".*\S.*">
+                  <label class="text-dark" for="fullname">Official Name</label>
+                  <input type="text" class="form-control" placeholder="Enter official name" aria-label="name" name="u_name"
+                    required>
                 </div>
                 <div class="col">
                 <label class="text-dark" for="mobile">Mobile No.</label>
                 <input type="text" class="form-control" id="mobile" placeholder="Enter your moblie number" aria-label="mobile" name="u_mobile" required pattern="[0-9]{10}" title="Enter valid 10-digit mobile number">
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col">
+                  <label class="text-dark" for="address">Address</label>
+                  <input type="text" class="form-control" placeholder="Enter Address"  name="u_address"
+                    required>
+                </div>
+                <div class="col">
+                <label class="text-dark" for="mobile">Registration Number</label>
+                <input type="text" class="form-control" placeholder="Enter Registration number" aria-label="mobile" name="u_regi" required pattern="[0-9]+\/[0-9]{6}" title="Formate(2028/123654)"/>
                 </div>
               </div>
 
@@ -131,24 +148,35 @@ if (isset($_POST['reg'])) {
 
                 <div class="col">
                 <label class="text-dark" for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password" name="u_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$"  title="Enter atlist 1-capital, 1-character, and number">                 
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="u_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$">                 
                 </div>
               </div>
+
+              <div class=" mt-3">
+                <label class="text-dark" for="des">Short Description</label>
+                <input type="text" class="form-control"  placeholder="" aria-label="des" name="u_desc" required pattern="[A-Za-z\s]+" title="Enter only text here"/>                  
+                </div>
+             
 
               <div class="row mt-3">
               <div class="col">
-                <label class="text-dark" for="address">Address</label>
-                <input type="text" class="form-control" placeholder="Enter your address" aria-label="address" name="u_address" required>                  
+              <label for="formFileLg" class="form-label">Official Logo</label>
+              <input class="form-control form-control-lg" id="formFileLg" type="file" name="image" required>
                 </div>
 
               <div class="col">
-              <label for="formFileLg" class="form-label">Image</label>
-              <input class="form-control form-control-lg" id="formFileLg" type="file" name="image" required>
+              <label for="formFileLg" class="form-label">Registration Document</label>
+              <input class="form-control form-control-lg" id="formFileLg" type="file" name="image1" required>
                 </div>
+                </div>
+
+                
+
+
                 
               </div>
               
-              <div class="text-center mt-4">
+              <div class="text-center mt-4 mb-2">
                 <button type="submit" name="reg" class="btn btn-primary btn-lg btn-block text-center">Sign
                   up</button>
               </div>
@@ -156,9 +184,7 @@ if (isset($_POST['reg'])) {
 
              
               <br>
-              <p class="text-dark text-center">Already Regisrter? <a href="login.php">Click Here</p></a> 
-
-              <p class="text-dark text-center">Agency Login? <a href="agency.php">Click Here</p></a>
+              <p class="text-dark text-center">Already Regisrter? <a href="login.php">Click Here</p></a>
 
             </form>
           </div>

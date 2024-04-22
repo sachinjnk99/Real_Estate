@@ -88,11 +88,11 @@ td form {
                 <th>Title</th>
                 <th>Type</th>
                 <th>BHK</th>
-                <th>SR</th>
+                <th>Condition</th>
                 <th>Area</th>
                 <th>Price</th>
                 <th>Location</th>
-                <th>Added Date</th>
+                <th>Contact</th>
                 <th>Status</th>
                 <th>Action</th>
                 
@@ -105,22 +105,22 @@ td form {
         <?php 
                             $cnt=$cnt+1;
 							$uid=$_SESSION['u_id'];
-							$query=mysqli_query($con,"SELECT * FROM `property` WHERE u_id='$uid'");
+							$query=mysqli_query($con,"SELECT * FROM `property1` WHERE uid='$uid'");
 								while($row=mysqli_fetch_array($query))
 								{
 							?>
             <tr>
                 <td><?php echo $cnt; ?></td>
-                <td><img class="img1" src="property/prop/<?php echo $row['17'];?>" alt="pimage"></td>
-                <td><?php echo $row['1']; ?></td>
-                <td><?php echo $row['3']; ?></td>
+                <td><img class="img1" src="property/prop/<?php echo $row['30'];?>" alt="pimage"></td>
+                <td><?php echo $row['2']; ?></td>
                 <td><?php echo $row['4']; ?></td>
+                <td><?php echo $row['13']; ?></td>
                 <td><?php echo $row['5']; ?></td>
-                <td><?php echo $row['11']; ?></td>
-                <td><?php echo $row['12']; ?></td>
-                <td><?php echo $row['15']; ?></td>
-                <td><?php echo $row['23']; ?></td>
-                <td><?php echo $row['20']; ?></td>
+                <td><?php echo $row['25']; ?></td>
+                <td><?php echo $row['21']; ?></td>
+                <td><?php echo $row['19']; ?></td>
+                <td><?php echo $row['38']; ?></td>
+                <td><?php echo $row['42']; ?></td>
                 
                 <td><a href="propertyedit.php?id=<?php echo $row['0'];?>"><button class="btn btn-success">Edit</button></a>
                 <a href="propertydelete.php?id=<?php echo $row['0'];?>"><button class="btn btn-danger">Delete</button></a></td>

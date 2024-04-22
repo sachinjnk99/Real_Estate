@@ -53,7 +53,7 @@ if(isset($_REQUEST['login']))
 
 <body>
 <?php include("include/header.php");?>
-    <div class="container pb-4">
+    <div class="container pt-5  mt-5 pb-4">
         <div class="row justify-content-center ">
             <div class="col-lg-6 mt-4">
                 <div class="card bg-light" style="border-radius: 10px;">
@@ -62,8 +62,7 @@ if(isset($_REQUEST['login']))
                         <form method="post" enctype="multipart/form-data">
                             <h4 class="text-center text-dark">Please login to your account</h4>
                             <?php echo $error; ?><?php echo $msg; ?>
-                            <hr>
-                           
+                            <hr>                  
                                 <div class="form-outline mb-4 pt-4">
                                     <label class="form-label text-dark" for="form2Example11">Email</label>
                                     <input type="text" id="email" name="email" class="form-control" 
@@ -71,23 +70,21 @@ if(isset($_REQUEST['login']))
 
                                 </div>
 
-                                <div class="form-outline mb-4">
+                                <div class="form-outline mb-2">
                                     <label class="form-label text-dark" for="form2Example22">Password</label>
                                     <input type="password" id="password" name="password" class="form-control"
                                         placeholder="Password" />
 
                                 </div>
+                                <p class="text-left text-dark"> <a href="forget.php">Forget Password</a></p>
 
                                 <div class="text-center">
                                     <button type="submit" name="login"
                                         class="btn btn-primary btn-lg btn-block ">Login</button>
-                                </div>
-                            
+                                </div>                            
                             <br>
-
-
                             <p class="text-center text-dark">Don't have an account? <a href="signup.php">Signup</a> </p>
-                            <p class="text-center text-dark"> <a href="forget.php">Forget Password</a></p>
+                            <p class="text-center text-dark"><a href="agency.php">Register as Agency?</a></p>
 
                         </form>
 

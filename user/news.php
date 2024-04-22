@@ -10,7 +10,7 @@ include("config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Latest News</title>
+    <title>News</title>
     <style>
         /* CSS styles for news display */
         .news-container {
@@ -46,7 +46,7 @@ include("config.php");
 
 
 
-// Check if there are any news articles
+
 
     // Output data of each news article
     {

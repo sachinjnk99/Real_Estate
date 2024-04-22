@@ -55,7 +55,7 @@ if(isset($_POST['insert']))
     <?php include("include/header.php");?>
 
     <div class="full-row">
-        <div class="container">
+        <div class="container pt-5 mt-5">
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="text-secondary double-down-line text-center">Profile</h2>
@@ -104,7 +104,7 @@ if(isset($_POST['insert']))
                                 {
                             ?>
                             
-                            <div class="foto_style img mt-md-50"> <img src="uprofile/pp/<?php echo $row['5'];?>" alt="userimage">
+                            <div class="foto_style img mt-md-50"> <img src="uprofile/pp/<?php echo $row['9'];?>" alt="userimage">
                         <div class="mb-4 mt-3">
                         </div> 
 
@@ -119,7 +119,7 @@ if(isset($_POST['insert']))
                                 <?php echo $row['2'];?>
                             </div>
                             <div class="mb-1 text-capitalize"><b>Role:</b>
-                                <?php echo $row['6'];?>
+                                <?php echo $row['10'];?>
                             </div>
                         </div>
                         <?php } ?>
