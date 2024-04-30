@@ -13,7 +13,9 @@ include("config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style12.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
     <title>Document</title>
     <style>
         .delete-btn, .update-btn {
@@ -25,8 +27,8 @@ include("config.php");
   cursor: pointer;
 }
 
-.bg{
-    background-color: green;
+.bg {
+    background: #1F4B8C;
 }
 
 .bg1{
@@ -57,36 +59,27 @@ td form {
 </head>
 <body>
 <?php include("header.html");?>
-<div class="container">
-        <div class="header">
-            <div class="nav">
-          
-            </div>
-        </div>
+<div class="content-2">             
+<h2 class="text-secondary text-center pt-5 mt-5" >Users Details</h2>   
+<hr class="bg-dark ">                
 
-        <div class="content-2">
-            <div class="recent-payments">
-                <div class="title bg1">
-                    <h2 class="text" >User Details</h2>   
-                </div>
-
-<table id="basic-datatable" class="table table-bordered table-hover">
+<table id="myTable" class="table table-bordered table-hover">
         <thead>
-            <tr class="bg text-white">
+            <tr class="bg text-white text-center">
                 <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Contact</th>
-                <th>Utype</th>
-                <th>Image</th>
-                <th>Action</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Address</th>
+                <th class="text-center">Contact</th>
+                <th class="text-center">Image</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
     
     
         <tbody>
         <?php
-                
             $query=mysqli_query($con,"select * from user where u_type='user'");
             $cnt=1;
             while($row=mysqli_fetch_row($query))
@@ -96,10 +89,11 @@ td form {
                 <td><?php echo $cnt; ?></td>
                 <td><?php echo $row['1']; ?></td>
                 <td><?php echo $row['3']; ?></td>
+                <td><?php echo $row['5']; ?></td>
                 <td><?php echo $row['2']; ?></td>
-                <td><?php echo $row['6']; ?></td>
-                <td><img src="uprofile/pp/<?php echo $row['5']; ?>" height="50px" width="50px"></td>
-                <td><a href="userdelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
+                <td><img src="../user/uprofile/pp/<?php echo $row['9']; ?>" height="50px" width="50px"></td>
+                <td><?php echo $row['11']; ?></td>
+                <td class="text-center"><a href="user-delete.php?u_id=<?php echo $row['0']; ?>"><i class="fa-solid fa-trash fa-xl text-danger"></i></a></td>
             </tr>
             <?php
             $cnt=$cnt+1;
@@ -109,9 +103,16 @@ td form {
         </tbody>
     </table>
     </div>
-            </div>
-          </div>
-    
+   
 
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  });
+</script>
 </body>
 </html>

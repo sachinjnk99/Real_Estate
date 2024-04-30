@@ -16,6 +16,7 @@ if(!isset($_SESSION["u_email"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="font/css/all.css">
     <title>Document</title>
@@ -30,7 +31,7 @@ if(!isset($_SESSION["u_email"])) {
 }
 
 .bg{
-    background-color: green;
+    background-color: rgb(69, 7, 239);
 }
 
 .bg1{
@@ -65,11 +66,12 @@ td form {
 
         <div class="content-2 py-5 mt-5 px-5">
             <div class="recent-payments pt-5 mt-5">
-                <div class="title bg1">
-                    <h2 class="text" >User Details</h2>   
+                <div class="title text-center">
+                    <h2 class="text-secondary" >Appointment View</h2>   
                 </div>
+                <hr class="bg-dark">
 
-<table id="basic-datatable" class="table table-bordered table-hover">
+<table id="myTable1" class="table table-bordered table-hover">
         <thead>
             <tr class="bg text-white text-center">
                 <th>#</th>
@@ -80,6 +82,7 @@ td form {
                 <th>Date</th>
                 <th>Time</th>
                 <th>Message</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -90,50 +93,39 @@ td form {
             $uid=$_SESSION['u_id'];
             $query=mysqli_query($con,"select * from bookappo where owner_id='$uid'");
             $cnt=1;
+            if(mysqli_num_rows($query) > 0) {
             while($row=mysqli_fetch_row($query))
                 {
         ?>
             <tr>
                 <td><?php echo $cnt; ?></td>
-                <td><?php echo $row['8']; ?></td>
+                <td class="text-center">REMS-<?php echo $row['8']; ?></td>
                 <td><?php echo $row['2']; ?></td>
                 <td><?php echo $row['3']; ?></td>
-                <td><?php echo $row['4']; ?></td>
-                <td><?php echo $row['5']; ?></td>
-                <td><?php echo $row['6']; ?></td>
+                <td class="text-center"><?php echo $row['4']; ?></td>
+                <td class="text-center"><?php echo $row['5']; ?></td>
+                <td class="text-center"><?php echo $row['6']; ?></td>
                 <td><?php
-// Retrieve the long paragraph text from the database
-$longText = $row['7'];
-
-// Define the maximum number of words per line
-$wordsPerLine = 12;
-
-// Split the paragraph into an array of words
-$words = explode(" ", $longText);
-
-// Initialize an empty array to store lines of text
-$lines = [];
-
-// Loop through the words and create lines with the specified number of words
-for ($i = 0; $i < count($words); $i += $wordsPerLine) {
-    // Join the words for this line into a string
-    $line = implode(" ", array_slice($words, $i, $wordsPerLine));
-    
-    // Add the line to the array of lines
-    $lines[] = $line;
-}
-
-// Output the formatted text with line breaks
-foreach ($lines as $line) {
-    echo $line . "<br>";
-}
-?></td>
-                
-                <td><a href="userdelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
+                $longText = $row['7'];
+                $wordsPerLine = 12;
+                $words = explode(" ", $longText);
+                $lines = [];
+                for ($i = 0; $i < count($words); $i += $wordsPerLine) {
+                $line = implode(" ", array_slice($words, $i, $wordsPerLine));
+                $lines[] = $line;
+                    }
+                foreach ($lines as $line) {
+                echo $line . "<br>";
+                }
+                ?></td>
+                <td class="text-center"><?php echo $row['10']; ?></td>
+                <td><a href="accept-booking.php?b_id=<?php echo $row['0'];?>&pid=<?php echo $row['8']; ?>&uid=b_id=<?php echo $row['1']; ?>"><button class="btn btn-success">Accept</button></a></td>
             </tr>
             <?php
             $cnt=$cnt+1;
-            } 
+            }} else {
+                echo "<tr><td  colspan='11'>No Details Found</td></tr>";
+            }
             ?>
            
         </tbody>
@@ -141,6 +133,86 @@ foreach ($lines as $line) {
     </div>
             </div>
           </div>
+
+
+
+
+
+          <div class="content-2 py-2 px-5 mb-5">
+            <div class="recent-payments pt-2">
+            <div class="title text-center">
+                    <h2 class="text-secondary" >Appointment Request</h2>   
+                </div>
+                <hr class="bg-dark">
+
+<table id="myTable" class="table table-bordered table-hover">
+        <thead>
+            <tr class="bg text-white text-center">
+                <th>#</th>
+                <th>Property Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    
+    
+        <tbody>
+        <?php
+            $uid=$_SESSION['u_id'];
+            $query=mysqli_query($con,"select * from bookappo where uid='$uid'");
+            $cnt=1;
+            if(mysqli_num_rows($query) > 0) {
+            while($row=mysqli_fetch_row($query))
+                {
+        ?>
+            <tr >
+                <td><?php echo $cnt; ?></td>
+                <td class="text-center">REMS-<?php echo $row['8']; ?></td>
+                <td><?php echo $row['2']; ?></td>
+                <td ><?php echo $row['3']; ?></td>
+                <td class="text-center"><?php echo $row['4']; ?></td>
+                <td class="text-center"><?php echo $row['5']; ?></td>
+                <td class="text-center"><?php echo $row['6']; ?></td>
+                <td><?php
+                $longText = $row['7'];
+                $wordsPerLine = 12;
+                $words = explode(" ", $longText);
+                $lines = [];
+                for ($i = 0; $i < count($words); $i += $wordsPerLine) {
+                $line = implode(" ", array_slice($words, $i, $wordsPerLine));
+                $lines[] = $line;
+                    }
+                foreach ($lines as $line) {
+                echo $line . "<br>";
+                }
+                ?></td>
+                <td class="text-center"><?php echo $row['10']; ?></td>
+                <td><a href="accept-booking.php?b_id=<?php echo $row['0'];?>&pid=<?php echo $row['8']; ?>&uid=b_id=<?php echo $row['1']; ?>"><button class="btn btn-success">Accept</button></a>
+                <a href="userdelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Cancle</button></a></td>
+            </tr>
+            <?php
+            $cnt=$cnt+1;
+            } }else {
+                echo "<tr ><td colspan='11'>No Details Found</td></tr>";
+            }
+            ?>
+           
+        </tbody>
+    </table>
+    </div>
+            </div>
+          </div>
+          <script>
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  });
+</script>
           <?php include("include/footer.html");?>
 
 </body>

@@ -17,7 +17,7 @@ if(!isset($_SESSION['u_email']))
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>my_property</title>
     <style>
 .delete-btn, .update-btn {
   color: white;

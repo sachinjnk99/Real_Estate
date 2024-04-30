@@ -13,6 +13,7 @@
 
   </style>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="font/css/all.css">
 
   <style>
     .dropdown {
@@ -73,7 +74,7 @@
             <a class="nav-link me-4 text-light" href=".php">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href="agency.php">Contact</a>
+            <a class="nav-link me-4 text-light" href="email.php">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link me-4 text-light" href="property.php">Property</a>
@@ -108,10 +109,10 @@
         ?>
             <div class="dropdown">
               <li class="nav-item right">
-              <a class="nav-link me-4 text-light right " href="#"> <i class="fa-solid fa-user"></i>&nbsp; My Account</a>
+              <a class="nav-link me-5 me-5 text-light right " href="#"> <i class="fa-solid fa-user"></i>&nbsp; My Account</a>
               </li>
               <div class="dropdown-content">
-              <a  href="profile.php">Profile</a>
+              <a  href="profile1.php">Profile</a>
               <a href="appo-view.php">Appointment Request</a>
               <a href="myproperty1.php">My property</a>
               <a href="logout.php">Logout</a>

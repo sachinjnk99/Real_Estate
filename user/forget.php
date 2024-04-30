@@ -67,14 +67,14 @@ if ($result->num_rows > 0) {
 
 <body>
 <?php include("include/header.php");?>
-    <div class="container pb-4">
+    <div class="container pb-4 pt-5 mt-5">
         <div class="row justify-content-center ">
             <div class="col-lg-4 mt-4">
                 <div class="card bg-light" style="border-radius: 10px;">
                     <div class="card-body sign">
 
                         <form method="post" enctype="multipart/form-data">
-                            <h4 class="text-center text-dark">Reset Your Password</h4>
+                            <h4 class="text-center text-dark ">Reset Your Password</h4>
                             <?php echo $error; ?><?php echo $msg; ?>
                             <hr>
                            
@@ -87,9 +87,9 @@ if ($result->num_rows > 0) {
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label text-dark" for="form2Example22">New Password</label>
-                                    <input type="password" id="password" name="password" class="form-control"
-                                        placeholder="Set New Password" />
-
+                                    <input type="password" id="myInput" name="password" class="form-control mb-2"
+                                        placeholder="Set new password" />
+                                    <input type="checkbox" onclick="myFunction()">Show Password  
                                 </div>
 
                               
@@ -113,7 +113,16 @@ if ($result->num_rows > 0) {
         </div>
     </div>
 
-
+    <script>
+function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 
     <?php include("include/footer.html");?>
 </body>

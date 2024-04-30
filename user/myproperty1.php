@@ -59,6 +59,7 @@ if(!isset($_SESSION['u_email']))
                             
 							$uid=$_SESSION['u_id'];
 							$query=mysqli_query($con,"SELECT property1.*, user.u_name, user.u_type, user.uimage FROM `property1`,`user` WHERE property1.uid = '$uid' AND property1.uid = user.u_id AND p_status = 'approved'");
+              if(mysqli_num_rows($query) > 0) {
 								while($row=mysqli_fetch_array($query))
 								{
 							?>
@@ -112,7 +113,10 @@ if(!isset($_SESSION['u_email']))
 
                 </div>
               </div>
-              <?php } ?>
+              <?php }?>
+              <?php } else{
+                 echo "<h3 class='col-md-12 text-center pt-5 mt-5 pb-5 mb-5'>No properties listed</h3>";
+              }?>
             </div>
             </div> </div> </div> </div>
               </div></div></div></div>

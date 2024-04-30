@@ -1,7 +1,11 @@
 <?php 
-
+session_start();
+isset($_SESSION["u_email"]);
+if(!isset($_SESSION["u_email"])) {
+  header("Location: login.php");
+  exit;
+}
 include("config.php");
-
 ?>
 
 
@@ -54,40 +58,7 @@ include("config.php");
   <div id="page-wrapper">
     <div class="row">
       <div class="full-row">
-        <div class="container">
-        <form method="post" action="search-prop.php">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-2">
-                                        <div class="form-group">
-                                            <select class="form-control" name="type">
-                                                <option value="">Select Type</option>
-												<option value="House for Sale">House For Sale</option>
-												<option value="Land for sale">Land For Sale</option>
-												<option value="For Rent">For Rent</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-2">
-                                        <div class="form-group">
-                                            <select class="form-control" name="stype">
-                                                <option value="">Select Status</option>
-												<option value="rent">Rent</option>
-												<option value="sale">Sale</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 mb-4">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="city" placeholder="Enter City Name" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-lg-2">
-                                        <div class="form-group">
-                                            <button type="submit" name="filter" class="btn btn-warning w-100">Find Property</button>
-                                        </div>
-                                    </div>
-  </div>
-  </form
+        <div class="container pt-5 mt-5">
           <div class="col-lg-12">
             <div class="row">
             <?php 
@@ -111,7 +82,7 @@ include("config.php");
 										{
 							?>
 
-              <div class="col-md-4">
+              <div class="col-md-4 pt-5 mt-4">
                 <div class="featured-thumb hover-zoomer mb-2">
 
                   <div class="overlay-black overflow-hidden position-relative img_style img"> <img
@@ -130,8 +101,8 @@ include("config.php");
                           <?php echo $row['25'];?>-<?php echo $row['24'];?>
                         </span>
                       </span>
-                      <h5 class="text-secondary hover-text-success mb-2 text-capitalize "><a
-                          href="prop-details.php?pid=<?php echo $row['0'];?>"> <?php echo $row['4'];?></a></h5>
+                      <h5 class="text-secondary hover-text-success mb-2 text-capitalize ">
+                        <a href="prop-details.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['u_name'];?>"> <?php echo $row['4'];?></a></h5>
                        
                           
                       <span class="location text-capitalize  "><i class="fas fa-map-marker-alt text-success"></i>

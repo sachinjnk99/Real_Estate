@@ -205,9 +205,9 @@
     }
 
     .foto_style img {
-      width: 250px; 
-      height:250px;
-      border-radius: 10px;
+      width: 450px; 
+      height:450px;
+      border-radius: 5px;
     }
     
     .img_style img {
@@ -221,7 +221,9 @@
       width: 400px; 
       height:150px;
 
-    }​
+    }
+    
+
 /* Default styles for all screen sizes */
 .container {
   width: 100%; /* Take up full width */

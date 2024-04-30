@@ -1,11 +1,10 @@
 <?php 
 session_start();
+isset($_SESSION["u_email"]);
 include('config.php');
-
-// Check if user is logged in (assuming you have a login system)
 if(!isset($_SESSION["u_email"])) {
-    header("Location: login.php");
-    exit;
+  header("Location: login.php");
+  exit;
 }
 
 // Check if agency ID is provided in the URL
@@ -194,7 +193,7 @@ if(isset($_GET['u_id'])) {
 
 <body>
   <?php include("include/header.php");?>
-  <br>
+  
   <div class="container pt-5 mt-5 pb-5">
     <div class="row justify-content-right">
       <div class="col-lg-12">
@@ -224,10 +223,10 @@ if(isset($_GET['u_id'])) {
               <h6 class="text-capitalize sp6"> Total Properties</h6>
               <h6 class="sp9"><i class="fa-solid fa-phone text-success"></i>
                 <?php echo $row['2']; ?>
-                </<h6>
+                </h6>
                 <h6 class="sp0">Reg. no.
                   <?php echo $row['6']; ?>
-                  </<h6>
+                  </h6>
 
 
                   <h1 class="sp01">
@@ -346,8 +345,8 @@ if(isset($_GET['u_id'])) {
         </div>
     </div>
     <?php }} ?>
+    
 </div>
-
       </div>
     </div>
     </div>

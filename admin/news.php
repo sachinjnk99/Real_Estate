@@ -57,12 +57,7 @@ if(isset($_POST['insert']))
 
 <body>
 <?php include("header.html");?>
-<div class="container">
-        <div class="header">
-            <div class="nav">
-          
-            </div>
-        </div>
+
     <div class="container py-5">
         <div class="row justify-content-center py-5">
             <div class="col-lg-8 mt-4">

@@ -1,126 +1,100 @@
+<?php 
+session_start();
+include("config.php");
+$error="";
+$msg="";
+if(isset($_REQUEST['login']))
+{
+	$email=$_REQUEST['email'];
+	$password=$_REQUEST['password'];
+	//$pass= sha1($pass);
+	
+	if(!empty($email) && !empty($password))
+	{
+		$sql = "SELECT * FROM admin where email='$email' && password='$password'";
+		$result=mysqli_query($con, $sql);
+		$row=mysqli_fetch_array($result);
+		   if($row){
+			   
+				$_SESSION['id']=$row['id'];
+				$_SESSION['email']=$email;
+				header("location:dasboard.php");
+				
+		   }
+		   else{
+			   $error = "<p class='alert alert-warning'>Email or Password doesnot match!</p> ";
+		   }
+	}else{
+		$error = "<p class='alert alert-warning'>Please Fill all the fields</p>";
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title >Admin Panel</title>
-    <link rel="icon" type="image/x-icon" href="img/">
+
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Login</title>
+    <style>
+        body {
+            background-image: url("https://trbahadurpur.com/wp-content/uploads/2021/01/background-5.jpg");
+        }
+    </style>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="font/css/all.css">
 </head>
 
 <body>
-<?php include("header.html");?>
-    
-    <div class="container">
-        <div class="header">
-            <div class="nav">
-            </div>
-        </div>
 
-        <div class="content">
-           <div class="heads" style="padding:20px;"><h1>Dashboard</h1></div> 
-            <div class="cards">
+    <div class="pt-5  mt-5 pb-4">
+        <div class="row justify-content-center ">
+            <div class="col-lg-4 mt-4">
+                <div class="card bg-light px-5" style="border-radius: 5px;">
+                    <div class="sign">
 
-                <a href="#">
-                <div class="card">
-                    <div class="box">
-                        <h1> <?php
-                            // Replace the database credentials with your own
-                            $servername = "localhost:3307";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "real";
-            
-                            // Create a connection to the database
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            
-                            // Check if the connection was successful
-                            if (!$conn) {
-                                die("Connection failed: " . mysqli_connect_error());
-                            }
-            
-                            // Create a SQL query to count the number of records in a table
-                            $sql = "SELECT COUNT(*) as count FROM user";
-            
-                            // Execute the query
-                            $result = mysqli_query($conn, $sql);
-            
-                            // Get the count of the records
-                            $count = mysqli_fetch_assoc($result)['count'];
-            
-                            // Print the count within the h1 tag
-                            echo $count;
-            
-                            // Close the database connection
-                            mysqli_close($conn);
-                            ?></h1>
-                        <h3>User</h3>
-                    </div>
-                    <div class="icon-case">
-                        <img src="img/" style="height:70px; width:70px" alt="">
-                    </div>
-                </div></a>
+                        <form method="post" enctype="multipart/form-data">
+                            <h4 class="text-center text-dark pt-3">Admin Login Panel</h4>
+                            <?php echo $error; ?><?php echo $msg; ?>
+                            <hr>                  
+                                <div class="form-outline mb-4 pt-2">
+                                    <label class="form-label text-dark" for="form2Example11">Email</label>
+                                    <input type="text" id="email" name="email" class="form-control" 
+                                        placeholder="Email " />
 
-                <a href="#">
-                <div class="card">
-                    <div class="box">
-                        <h1><?php
-                            // Replace the database credentials with your own
-                            $servername = "localhost:3307";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "real";
-            
-                            // Create a connection to the database
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            
-                            // Check if the connection was successful
-                            if (!$conn) {
-                                die("Connection failed: " . mysqli_connect_error());
-                            }
-            
-                            // Create a SQL query to count the number of records in a table
-                            $sql = "SELECT COUNT(*) as count FROM property";
-            
-                            // Execute the query
-                            $result = mysqli_query($conn, $sql);
-            
-                            // Get the count of the records
-                            $count = mysqli_fetch_assoc($result)['count'];
-            
-                            // Print the count within the h1 tag
-                            echo $count;
-            
-                            // Close the database connection
-                            mysqli_close($conn);
-                            ?></h1>
-                        <h3>Properties</h3>
-                    </div>
-                    <div class="icon-case">
-                        <img src="img/" style="height:90px; width:90px" alt="">
+                                </div>
+
+                                <div class="form-outline mb-2">
+                                    <label class="form-label text-dark" for="form2Example22">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control"
+                                        placeholder="Password" />
+
+                                </div>
+                                <p class="text-left text-dark mb-4"> <a href="forget.php">Forget Password</a></p>
+
+                                <div class="text-center mb-3">
+                                    <button type="submit" name="login"
+                                        class="btn btn-primary btn-lg btn-block ">Login</button>
+                                </div>                            
+                            
+
+                        </form>
+
                     </div>
                 </div>
-            </a>
-
-            <a href="#">
-                <div class="card">
-                    <div class="box">
-                        <h1>5</h1>
-                        <h3>Complain</h3>
-                    </div>
-                    <div class="icon-case">
-                        <img src="img/" style="height:70px; width:70px" alt="">
-                    </div>
-                </div></a>
-
             </div>
         </div>
     </div>
-    </div>
+
+
+
+ 
 </body>
 
 </html>

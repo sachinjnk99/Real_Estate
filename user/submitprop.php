@@ -93,9 +93,39 @@ if(isset($_POST['add']))
 		{
 			$error="<p class='alert alert-warning'>Property Not Inserted Some Error</p>";
 		}
-}							
-?>
 
+
+// Email message
+$message = "
+<html>
+<head>
+<title>Property Sumitted Successfully</title>
+</head>
+<body>
+<p>Dear user,</p>
+<p>We are pleased to inform you that your property submission has been successfully received. Our team will review the details provided and process your submission shortly.</p>
+
+<p><b>Property Details:</b></p>
+
+<p><b>Property Type: $ptype</b></p>
+<p><b>Price: $price /- $per_pro </b></p>
+<p><b>Property Address: $city</b></p>
+<p><b>Description: $content</b></p>
+
+<p>Thank you for choosing our service. If you have any questions or need further assistance, please feel free to contact us.</p>
+<p>Best regards,<br>Real Estate Management Team</p>
+</body>
+</html>
+";
+
+// Additional headers
+$headers = "From:Real Estate Management System <noreply@example.com>\r\n";
+$headers .= "Reply-To: Real Estate Support <support@example.com>\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+$check=mail("$email", "Property Sumitted Successfully", "$message", "$headers");
+  }
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -103,7 +133,7 @@ if(isset($_POST['add']))
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>submit_property</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -135,9 +165,9 @@ if(isset($_POST['add']))
 
 <body>
   <?php include("include/header.php");?>
-  <div class="container pb-5 mt-5 pt-5">
+  <div class="container py-5 mt-5 pt-5">
     <div class="row justify-content-center">
-      <div class="col-lg-9">
+      <div class="col-lg-8">
         <div class="card " style="border-radius: 10px;">
           <div class="card-body signup ">
 
@@ -690,6 +720,13 @@ if(isset($_POST['add']))
   </div>
   </div>
   </form></div>
+
+
+
+
+
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

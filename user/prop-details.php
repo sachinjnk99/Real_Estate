@@ -2,7 +2,7 @@
 session_start();
 isset($_SESSION["u_email"]);
 include('config.php');
-// Check if user is logged in (assuming you have a login system)
+
 if(!isset($_SESSION["u_email"])) {
   header("Location: login.php");
   exit;
@@ -25,6 +25,31 @@ if(isset($_POST['book']))
 	$message=$_POST['message'];
 	
 	$sql="insert INTO bookappo(uid,name,email,mobile,date,time,message,pid, owner_id) values ('$uid','$name','$email','$mobile','$date','$time','$message','$pid','$oid')";
+	$result=mysqli_query($con,$sql);
+	if($result)
+		{
+			$msg="<p class='alert alert-success'>Appoiment booked Inserted Successfully</p>";
+					
+		}
+		else
+		{
+			$error="<p class='alert alert-warning'>Property Not Inserted Some Error</p>";
+		}
+}							
+?>
+
+<?php 
+if(isset($_POST['request']))
+{
+  $uid=$_SESSION['u_id'];
+  $pid=$_POST['pid']; 
+	$oid=$_POST['oid'];
+	$name=$_POST['name'];
+  $email=$_POST['email'];
+  $mobile=$_POST['mobile'];
+	$message=$_POST['message'];
+	
+	$sql="insert INTO requestform(uid,pid,name,email,mobile,message,owner_id) values ('$uid','$pid','$name','$email','$mobile','$message','$oid')";
 	$result=mysqli_query($con,$sql);
 	if($result)
 		{
@@ -405,7 +430,7 @@ while($row=mysqli_fetch_array($query))
 
 <?php
 
-$pid = $_REQUEST['pid'];
+ $pid = $_REQUEST['pid'];
 $oid=$_REQUEST['uid'];
  ?>
  
@@ -419,6 +444,10 @@ $oid=$_REQUEST['uid'];
 
 <form id="form1" style="display: none;" method="post" enctype="multipart/form-data">
 <h4 class="text-center text-decoration ">Book Appointment</h4>
+<?php
+$error="";
+$msg="";
+?>
 <hr class="bg-dark ">
    
     <div class="row mt-3">
@@ -432,14 +461,12 @@ $oid=$_REQUEST['uid'];
                 </div>
                 <div class="col">
                   <label class="text-dark" for="email">Email Address</label>
-                  <input type="text" class="form-control" placeholder="Enter Email"  name="email"
-                    required>
+                  <input type="text" class="form-control" id="email" placeholder="Enter your email" aria-label="email" name="email" pattern=".+@gmail\.com" size="30" required title="Enter valid email(abc@gmail.com)"/>  
                 </div>
 
                 <div class="col">
                   <label class="text-dark" for="contact">Mobile Number</label>
-                  <input type="int" class="form-control" placeholder="Enter number" aria-label="mobile"
-                    name="mobile" required>
+                  <input type="text" class="form-control" id="mobile" placeholder="Enter your moblie number" aria-label="mobile" name="mobile" required pattern="[0-9]{10}" title="Enter valid 10-digit mobile number">
                 </div>
               </div>
 
@@ -456,7 +483,7 @@ $oid=$_REQUEST['uid'];
                     <option value="6 Am-9 Am">6 Am-9 Am</option>
                     <option value="10 Am-12 Am">10 Am-12 Am</option>
                     <option value="1 Pm-3 Pm">1 Pm-3 Pm</option>
-                    <option value="We3 Pm-6 Pmst">3 Pm-6 Pm</option>
+                    <option value="3 Pm-6 Pm">3 Pm-6 Pm</option>
                   </select>
                 </div>
 
@@ -472,10 +499,12 @@ $oid=$_REQUEST['uid'];
               </div>
 </form>
 
-<form id="form2" style="display: none;">
+<form id="form2" style="display: none;" method="post" enctype="multipart/form-data">
     <h4 class="text-center text-decoration ">Request More Info</h4>
     <hr class="bg-dark ">
      <div class="row mt-3">
+     <input class="form-control" value="<?php echo $oid;?>" required name="oid" type="hidden">
+    <input class="form-control" value="<?php echo $pid;?>" required name="pid" type="hidden">
 
                   <div class="col">
                   <label class="text-dark" for="name">Name</label>
@@ -484,28 +513,28 @@ $oid=$_REQUEST['uid'];
                 </div>
                 <div class="col">
                   <label class="text-dark" for="email">Email Address</label>
-                  <input type="text" class="form-control" placeholder="Enter Email"  name="email"
-                    required>
+                  <input type="text" class="form-control" id="email" placeholder="Enter your email" aria-label="email" name="email" pattern=".+@gmail\.com" size="30" required title="Enter valid email(abc@gmail.com)"/>  
                 </div>
 
                 <div class="col">
                   <label class="text-dark" for="contact">Mobile Number</label>
-                  <input type="int" class="form-control" placeholder="Enter number" aria-label="mobile"
-                    name="mobile" required>
+                  <input type="text" class="form-control" id="mobile" placeholder="Enter your moblie number" aria-label="mobile" name="mobile" required pattern="[0-9]{10}" title="Enter valid 10-digit mobile number">
                 </div>
               </div>
 
               <div class="form-group mt-3">
                 <label for="about-me">Message</label>
-                <textarea class="form-control" name="content" rows="7" placeholder="Enter Text Here...."></textarea>
+                <textarea class="form-control" name="message" rows="7" placeholder="Enter Text Here...."></textarea>
                 </div>
 
                 <div class="text-left mt-3">
-                <button type="submit" name="add" class="btn btn-danger btn-lg  text-center">Send</button>
+                <button type="submit" name="request" class="btn btn-danger btn-lg  text-center">Send</button>
                 </div>
 
               
 </form>
+
+
 <form method="POST" action="chatpage.php?pid=<?php echo $pid;?>&uid=<?php echo $oid;?>&u_name=<?php echo $u_name;?>"> 
   <div class="col-sm-6">
     <input type="hidden" name="owner_id" value="<?php echo $oid;?>">
@@ -561,19 +590,14 @@ function showForm(formId) {
         </div>
       </div>
 
-
       
-
-
-
-
-
       <div class="col-lg-4">
         <div class="card " style="border-radius: 10px;">
           <div class="card-body signup ">
-            <h2 class="card-title text-center mb-4 text-dark text-decoration-underline"><b>Latest Listed</b></h2>
+            <h3 class="card-title text-center mb-2 text-secondary"><b>Latest Listed</b></h3>
+            <hr class="bg-dark ">
             <?php 
-            $query=mysqli_query($con,"SELECT property1.*, user.u_name, user.u_type, user.uimage FROM `property1`,`user` WHERE property1.uid = user.u_id && p_status = 'approved' ORDER BY date DESC LIMIT 3");
+            $query=mysqli_query($con,"SELECT property1.*, user.u_name, user.u_type, user.uimage FROM `property1`,`user` WHERE property1.uid = user.u_id And p_status = 'approved' ORDER BY date DESC LIMIT 4");
             while($row=mysqli_fetch_array($query))
                 {
             ?>
@@ -581,7 +605,59 @@ function showForm(formId) {
               <img class="img5" src="property/prop/<?php echo $row['30'];?>" class="" alt="image">
 
               <div class="sp1">
-                <h5 class="text-success text-capitalize"> <a href="prop-details.php?pid=<?php echo $row['0'];?>">
+                <h5 class="text-success text-capitalize"> 
+                  <a href="prop-details.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['u_name'];?>">
+                    <?php echo $row['4'];?>
+                  </a></h5>
+
+                <p class="sp2"><b> Nrs.
+                    <?php echo $row['21']; ?>/-
+                  </b>
+                  <?php echo $row['22']; ?>
+                </p>
+
+              </div>
+              <h6 class="sp3">
+                <?php echo $row['19']; ?>
+              </h6>
+
+              <hr class="bg-dark ">
+
+              <?php } ?>
+            </div>
+
+          </div>
+
+        </div>
+
+        </div>
+
+</div>
+</div>    
+
+
+
+
+
+
+
+
+      <div class="col-lg-12 pt-5">
+        <div class="card" style="border-radius: 10px;">
+          <div class="card-body signup ">
+            <h3 class="card-title text-center mb-2 text-secondary"><b>Featured Property</b></h3>
+            <hr class="bg-dark ">
+            <?php 
+            $query=mysqli_query($con,"SELECT property1.*, user.u_name, user.u_type, user.uimage FROM `property1`,`user` WHERE property1.uid = user.u_id And p_status = 'approved' And is_featured='yes' ORDER BY date DESC LIMIT 4");
+            while($row=mysqli_fetch_array($query))
+                {
+            ?>
+            <div class="overlay-black overflow-hidden position-relative news_style img mb-4">
+              <img class="img5" src="property/prop/<?php echo $row['30'];?>" class="" alt="image">
+
+              <div class="sp1">
+                <h5 class="text-success text-capitalize"> 
+                  <a href="prop-details.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['u_name'];?>">
                     <?php echo $row['4'];?>
                   </a></h5>
 
@@ -610,7 +686,8 @@ function showForm(formId) {
   </div>
   </div>
   </div>
-
+  </div>
+  </div>
 
 
 

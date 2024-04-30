@@ -64,9 +64,10 @@ td form {
 
         <div class="content-2 py-5 mt-5 px-5">
             <div class="recent-payments pt-5 mt-5">
-                <div class="title bg1">
-                    <h2 class="text" >User Details</h2>   
+            <div class="title text-center">
+                    <h2 class="text-secondary" >Appointment Request</h2>   
                 </div>
+                <hr class="bg-dark">
 
 <table id="basic-datatable" class="table table-bordered table-hover">
         <thead>
