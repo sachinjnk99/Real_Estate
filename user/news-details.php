@@ -45,7 +45,8 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
       width: 600px; 
       height:400px;
       border-radius: 0px;
-      display: flex; 
+      display: block; 
+      margin: 0 auto;
       justify-content: center; 
       align-items: center; 
 
@@ -96,7 +97,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
             <div class="overlay-black overflow-hidden position-relative news_style img mb-4 ">
                  <img class="centered-image" src="img/<?php echo $row['image'];?>" alt="news_Image">
                   </div>
-            <h4><?php echo $row['title']; ?></h4><br>
+            <h4 class="mx-4"><?php echo $row['title']; ?></h4><br>
             <div class="px-4 pb-4 d-inline-block w-100">
                       <div class="float-left text-capitalizen text-bold"><i class="fas fa-user text-success mr-1"></i> Author :
                         <?php echo $row['published_by'];?>
@@ -143,7 +144,7 @@ mysqli_close($conn);
             while($row=mysqli_fetch_array($query))
                 {
             ?>
-            <div class="overlay-black overflow-hidden position-relative news_style img mb-4">
+            <div class="overlay-black overflow-hidden position-relative  mb-4">
               <img class="img5" src="property/prop/<?php echo $row['30'];?>" class="" alt="image">
 
               <div class="sp1">
@@ -193,7 +194,7 @@ mysqli_close($conn);
             while($row=mysqli_fetch_array($query))
                 {
             ?>
-            <div class="overlay-black overflow-hidden position-relative news_style img mb-4">
+            <div class="overlay-black overflow-hidden position-relative mb-4">
               <img class="img5" src="property/prop/<?php echo $row['30'];?>" class="" alt="image">
 
               <div class="sp1">

@@ -192,9 +192,8 @@ td form {
                 echo $line . "<br>";
                 }
                 ?></td>
-                <td class="text-center"><?php echo $row['10']; ?></td>
-                <td><a href="accept-booking.php?b_id=<?php echo $row['0'];?>&pid=<?php echo $row['8']; ?>&uid=b_id=<?php echo $row['1']; ?>"><button class="btn btn-success">Accept</button></a>
-                <a href="userdelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Cancle</button></a></td>
+                <td class="text-center text-success"><?php echo $row['10']; ?></td>
+                <td> <a href="userdelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
             </tr>
             <?php
             $cnt=$cnt+1;

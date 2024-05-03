@@ -71,10 +71,10 @@
             <a class="nav-link active me-4 text-light" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href=".php">About</a>
+            <a class="nav-link me-4 text-light" href="about.php">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-4 text-light" href="email.php">Contact</a>
+            <a class="nav-link me-4 text-light" href="contact.php">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link me-4 text-light" href="property.php">Property</a>

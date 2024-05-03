@@ -12,31 +12,79 @@ if(!isset($_SESSION["u_email"])) {
 
 
 <?php 
-if(isset($_POST['book']))
-{
-  $uid=$_SESSION['u_id'];
-  $pid=$_POST['pid']; 
-	$oid=$_POST['oid'];
-	$name=$_POST['name'];
-  $email=$_POST['email'];
-  $mobile=$_POST['mobile'];
-  $date=$_POST['date'];
-  $time=$_POST['time'];
-	$message=$_POST['message'];
-	
-	$sql="insert INTO bookappo(uid,name,email,mobile,date,time,message,pid, owner_id) values ('$uid','$name','$email','$mobile','$date','$time','$message','$pid','$oid')";
-	$result=mysqli_query($con,$sql);
-	if($result)
-		{
-			$msg="<p class='alert alert-success'>Appoiment booked Inserted Successfully</p>";
-					
-		}
-		else
-		{
-			$error="<p class='alert alert-warning'>Property Not Inserted Some Error</p>";
-		}
-}							
+if(isset($_POST['book'])) {
+    $uid = $_SESSION['u_id'];
+    $pid = $_POST['pid']; 
+    $oid = $_POST['oid'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $mobile = $_POST['mobile'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $message = $_POST['message'];
+    
+    // Construct the SQL query with a join to fetch owner email
+    $sql = "INSERT INTO bookappo (uid, name, email, mobile, date, time, message, pid, owner_id) 
+            VALUES ('$uid', '$name', '$email', '$mobile', '$date', '$time', '$message', '$pid', '$oid')";
+    
+    // Execute the SQL query
+    $result = mysqli_query($con, $sql);
+    
+    if ($result) {
+        // Fetch owner email from the property1 table
+        $query = mysqli_query($con, "SELECT property1.*, user.*, property1.uid, user.u_name, user.u_type, user.uimage  FROM `property1`,`user` WHERE property1.uid=user.u_id and pid='$pid'");
+        $row = mysqli_fetch_array($query);
+        
+        if ($row) {
+            // Email message
+            $owner_email = $row['email'];
+            $uname=$row['u_name'];
+            $subject = "New Appointment Request";
+            $message = "
+            <html>
+            <head>
+            <title>New Appointment Request</title>
+            </head>
+            <body>
+            <p>Dear Property Owner($uname),</p>
+            <p>You have received a new appointment request from a potential client.</p>
+            <p><b>Client Details:</b></p>
+            <p><b>Name: $name</b></p>
+            <p><b>Mobile: $mobile</b></p>
+            <p><b>Email: $email</b></p>
+            <p><b>Appointment Details:</b></p>
+            <p><b>Date: $date</b></p>
+            <p><b>Time: $time</b></p>
+            <p><b>Property ID: REMS-$pid</b></p>
+            <p><b>Message:</b></p>
+            <p>$message</p>
+            <p>Please review the request and take necessary action.</p>
+            <p>Best regards,<br>Real Estate Management Team</p>
+            </body>
+            </html>
+            ";
+
+            // Additional headers
+            $headers = "From: Real Estate Management System <noreply@example.com>\r\n";
+            $headers .= "Reply-To: Real Estate Support <support@example.com>\r\n";
+            $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+            
+            // Send email to the property owner
+            if (mail($owner_email, $subject, $message, $headers)) {
+                header('Location: appo-view.php');
+                exit();
+            } else {
+                echo "Error: Email could not be sent.";
+            }
+        } else {
+            echo "Error: Owner details not found.";
+        }
+    } else {
+        echo "Error inserting record: " . $con->error;
+    }
+} 
 ?>
+
 
 <?php 
 if(isset($_POST['request']))
@@ -51,20 +99,61 @@ if(isset($_POST['request']))
 	
 	$sql="insert INTO requestform(uid,pid,name,email,mobile,message,owner_id) values ('$uid','$pid','$name','$email','$mobile','$message','$oid')";
 	$result=mysqli_query($con,$sql);
-	if($result)
-		{
-			$msg="<p class='alert alert-success'>Appoiment booked Inserted Successfully</p>";
-					
-		}
-		else
-		{
-			$error="<p class='alert alert-warning'>Property Not Inserted Some Error</p>";
-		}
-}							
+	if ($con->query($sql) === TRUE) {
+    // Step 3: Fetch appointment details from the database
+    $query = mysqli_query($con, "SELECT property1.*, user.*, property1.uid, user.u_name, user.u_type, user.uimage  FROM `property1`,`user` WHERE property1.uid=user.u_id and pid='$pid'");
+    
+    // Step 4: Fetch appointment details and send email
+    $row = mysqli_fetch_array($query);
+    if ($row) {
+// Email message
+$uname = $row['u_name'];
+$to = $row['email'];
+$subject = "New Information Request";
+
+$message = "
+<html>
+<head>
+<title>New Information Request</title>
+</head>
+<body>
+<p>Dear Property Owner ($uname),</p>
+<p>You have received a new information request from a potential client regarding your property.</p>
+<p><b>Client Details:</b></p>
+<p><b>Name: $name</b></p>
+<p><b>Mobile: $mobile</b></p>
+<p><b>Email: $email</b></p>
+<p><b>Message:</b></p>
+<p>$message</p>
+<p>Please review the request and provide the necessary information.</p>
+<p>Best regards,<br>Real Estate Management Team</p>
+</body>
+</html>
+";
+
+        // Additional headers
+        $headers = "From: Real Estate Management System <noreply@example.com>\r\n";
+        $headers .= "Reply-To: Real Estate Support <support@example.com>\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        
+        // Send email
+        if (mail($to, $subject, $message, $headers)) {
+            header('Location: appo-view.php');
+            exit();
+        } else {
+            echo "Error: Email could not be sent.";
+        }
+    } else {
+        echo "Error: Appointment not found.";
+    }
+} else {
+    echo "Error updating record: " . $con->error;
+}}				
 ?>
 
 <?php
 $id=$_REQUEST['pid'];
+$uname=$_REQUEST['u_name'];
 $query=mysqli_query($con,"SELECT property1.*, user.*, property1.uid, user.u_name, user.u_type, user.uimage  FROM `property1`,`user` WHERE property1.uid=user.u_id and pid='$id'");
 while($row=mysqli_fetch_array($query))
 {
@@ -534,14 +623,16 @@ $msg="";
               
 </form>
 
-
-<form method="POST" action="chatpage.php?pid=<?php echo $pid;?>&uid=<?php echo $oid;?>&u_name=<?php echo $u_name;?>"> 
+<!--
+<form method="POST" action="chatpage.php?pid=<?php echo $pid;?>&uid=<?php echo $oid;?>&u_name=<?php echo $uname;?>"> 
   <div class="col-sm-6">
     <input type="hidden" name="owner_id" value="<?php echo $oid;?>">
     <input type="submit" class="btn btn-lg btn-success" name="send_message" style="width: 100%" value="Send Message" >
     
   </div>
-  </form>
+  </form> -->
+
+ 
 
 <script>
 function showForm(formId) {
@@ -580,9 +671,9 @@ function showForm(formId) {
     <input type="hidden" name="owner_id" value="<?php echo $rows['uid']; ?>">
     <input type="submit" class="btn btn-lg btn-success" name="send_message" style="width: 100%" value="Send Message" >
     
-  </div> -->
-  </form>
-
+  </div> 
+  </form> -->
+  <?php include("chatpage.php");?>
              
             </div>
             <?php } ?>
@@ -691,7 +782,7 @@ function showForm(formId) {
 
 
 
-
+  
   <?php include("include/footer.html");?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

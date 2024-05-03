@@ -95,9 +95,8 @@ include('config.php');
               <div class="col-md-4">
                 <div class="featured-thumb hover-zoomer mb-2">
 
-                  <div class="overlay-black overflow-hidden position-relative img_style img"> <img
-                      src="property/prop/<?php echo $row['30'];?>" alt="pimage">
-
+                  <div class="overlay-black overflow-hidden position-relative img_style img">
+                    <img src="property/prop/<?php echo $row['30'];?>" alt="pimage">
                     <div class="sale bg-success text-white">For
                       <?php echo $row['35'];?>
                     </div>
@@ -112,7 +111,7 @@ include('config.php');
                         </span>
                       </span>
                       <h5 class="text-secondary hover-text-success mb-2 text-capitalize ">
-                        <a href="prop-details.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['u_name'];?>"> <?php echo $row['4'];?></a></h5>
+                      <a href="prop-details.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['u_name'];?>"> <?php echo $row['4'];?></a></h5>
                        
                           
                       <span class="location text-capitalize  "><i class="fas fa-map-marker-alt text-success"></i>
