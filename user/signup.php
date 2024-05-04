@@ -20,6 +20,7 @@ if (isset($_POST['reg'])) {
         $u_id = $_POST['u_id'];
         $u_type = $_POST['u_type'];
         $uimage=$_FILES['image']['name'];
+        $code = rand(999999, 111111);
 
         $temp_name  =$_FILES['image']['tmp_name'];
         move_uploaded_file($temp_name,"uprofile/pp/$uimage");
@@ -51,7 +52,7 @@ if (isset($_POST['reg'])) {
     } else {
 
 
-      $sql="insert into user (u_id, u_name, u_phoneno, u_email, u_password, u_address, u_regi, u_desc, document, uimage, u_type, action) values('$u_id', '$u_name', '$u_phoneno', '$u_email', '$encpass','$u_address','$u_regi', '$u_desc','$doc', '$uimage', 'user','approved')";
+      $sql="insert into user (u_id, u_name, u_phoneno, u_email, u_password, u_address, u_regi, u_desc, document, uimage, u_type, action,otp) values('$u_id', '$u_name', '$u_phoneno', '$u_email', '$encpass','$u_address','$u_regi', '$u_desc','$doc', '$uimage', 'user','approved','$code')";
 	    $result=mysqli_query($con,$sql);
 
 
@@ -61,13 +62,13 @@ if (isset($_POST['reg'])) {
         //bind paramaters
        // $rc = $postStmt->bind_param('sssss', $u_id, $u_name, $u_phoneno, $u_email, $u_password, $uimage, $u_type);
        // $postStmt->execute();
-        //declare a varible which will be passed to alert function
+        //declare a varible which will be passed to alert function.
         if ($result) {
 
              // show pop-up message
-        echo '<script>alert("Account created Successfully!");</script>';
+        echo '<script>alert("otp Send  to your email $u_email");</script>';
         // redirect to login page
-        echo '<script>window.location.href = "login.php";</script>';
+        echo '<script>window.location.href = "otp.php";</script>';
            // $msg = "<p class='alert alert-success'> Customer Account Created </p>" && header("refresh:1; url=index.php");
         } else {
             $error = "Please Try Again Or Try Later";
@@ -75,41 +76,9 @@ if (isset($_POST['reg'])) {
     }
 
 // Email subject
-$subject = "Registration Confirmation";
+$subject = "Password Reset Code";
+$message = "Your password reset code is $code ";
 
-// Email message
-$message = "
-<html>
-<head>
-<title>Registration Confirmation</title>
-</head>
-<body>
-<p>Dear <b>$u_name</b>,</p>
-<p>Thank you for signing up with Real Estate Management System!</p>
-<p>Your registration was successful.</p>
-<p><b>Your Login Details:</b></p>
-<p><b>Name: $u_name</b></p>
-<p><b>Address: $u_address</b></p>
-<p><b>Mobile no.: $u_phoneno</b></p>
-<p><b>Email: $u_email</b></p>
-<p><b>Password: $u_password</b></p>
-<h3 align='center'>
-
-<a href='localhost/final/user/login.php'>
-
-Click Here To Login Your Account
-
-</a>
-
-</h3>
-
-
-<p>You can now login to your account and start exploring our services.</p>
-<p>If you have any questions or need assistance, feel free to contact us.</p>
-<p>Best regards,<br>Real Estate Management Team</p>
-</body>
-</html>
-";
 
 
 // Additional headers
@@ -160,7 +129,9 @@ $check = mail("$u_email", "$subject", "$message", "$headers");
             <div> 
              <input class="form-control" value="<?php echo $u_id;?>" required name="u_id"  type="hidden">
               </div>
-
+              <div> 
+             <input class="form-control" value="<?php echo $code;?>" required name="otp"  type="hidden">
+              </div>
               <div class="row mt-3">
                 <div class="col">
                   <label class="text-dark" for="fullname">Full Name</label>
