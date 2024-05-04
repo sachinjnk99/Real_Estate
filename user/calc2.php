@@ -25,7 +25,7 @@ include("config.php");
       <div class="col-lg-6">
         <div class="card " style="border-radius: 10px;">
           <div class="card-body signup ">
-            <h2 class="card-title text-center mb-4 text-dark"><b>Instalment Calculator</b></h2>
+            <h2 class="card-title text-center mb-4 text-secondary"><b>EMI Calculator</b></h2>
             <form class="d-inline-block w-100" action="calc.php" method="post">
             <hr class="bg-dark">
             <form method="post" enctype="multipart/form-data">
@@ -50,7 +50,7 @@ include("config.php");
                 </div>
 
                 <div class="text-center mt-4">
-          <button type="submit" value="submit" name="calc"  class="btn btn-primary btn-lg btn-block text-center">Calculate Instalment</button>
+          <button type="submit" value="submit" name="calc"  class="btn btn-primary btn-lg btn-block text-center">Calculate EMI</button>
         </div>
               </div>
           </div>

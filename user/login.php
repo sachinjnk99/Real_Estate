@@ -1,3 +1,4 @@
+
 <?php 
 session_start();
 include("config.php");
@@ -90,7 +91,7 @@ if(isset($_REQUEST['login']))
                                     <label class="form-label text-dark" for="form2Example22">Password</label>
                                     <input type="password" id="myInput" name="password" class="form-control mb-2"
                                         placeholder="Password" />
-                                    <input type="checkbox" onclick="myFunction()">Show Password   
+                                    <input type="checkbox" onclick="myFunction()"> Show Password   
 
                                 </div>
                                 <p class="text-right text-dark"> <a href="forget1.php">Forget Password</a></p>

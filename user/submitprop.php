@@ -138,24 +138,6 @@ $check=mail("$email", "Property Sumitted Successfully", "$message", "$headers");
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <link rel="stylesheet" type="text/css" href="style.css">
- <!-- <script>
-        // Function to show/hide form elements based on selected option
-        function showForm(option) {
-            // Hide all form elements initially
-            document.getElementById('form1').style.display = 'none';
-            document.getElementById('form2').style.display = 'none';
-            document.getElementById('form3').style.display = 'none';
-
-            // Show the relevant form based on the selected option
-            if (option === 'house') {
-                document.getElementById('form1').style.display = 'block';
-            } else if (option === 'villa') {
-                document.getElementById('form2').style.display = 'block';
-            } else if (option === 'office') {
-                document.getElementById('form3').style.display = 'block';
-            }
-        }
-    </script>-->
 <style>
   .hidden {
     display: none;

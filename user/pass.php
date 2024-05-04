@@ -70,7 +70,7 @@ if(isset($_POST['change-password'])){
         if($run_query){
             $_SESSION['info'] = "Your password has been changed. Now you can login with your new password.";
 
-            header('Location: password-changed.php');
+            header('Location: login.php');
         }else{
             $errors['db-error'] = "Failed to change your password!";
         }

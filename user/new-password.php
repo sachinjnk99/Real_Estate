@@ -30,13 +30,6 @@
 
                     <form action="" method="POST" autocomplete="">
                             <h4 class="text-center text-dark ">New Password</h4>
-                            <?php
-                            // Display info message
-if(isset($_SESSION['info'])){
-    echo "<div class='alert alert-info'>" . $_SESSION['info'] . "</div>";
-    unset($_SESSION['info']); // Clear the info message after displaying it
-}
-?>
                             <hr>
                            
                                 

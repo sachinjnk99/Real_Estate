@@ -193,7 +193,7 @@ td form {
                 }
                 ?></td>
                 <td class="text-center text-success"><?php echo $row['10']; ?></td>
-                <td> <a href="userdelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
+                <td> <a href="del-appo.php?uid=<?php echo $row['1']; ?>&&b_id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
             </tr>
             <?php
             $cnt=$cnt+1;

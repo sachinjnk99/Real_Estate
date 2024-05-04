@@ -31,6 +31,16 @@
                     <form action="" method="POST" autocomplete="">
                             <h4 class="text-center text-dark ">Reset Your Password</h4>
                             <?php echo $error; ?><?php echo $msg; ?>
+                            <?php
+                            if(isset($errors) && count($errors) > 0){
+                                echo "<div class='alert alert-danger'>";
+                                    foreach($errors as $error){
+                                        echo "<p>" . $error . "</p>";
+                                            }
+                                            echo "</div>";
+                                }
+                                ?>
+
                             <hr>
                            
                                 <div class="form-outline mb-4 pt-4">
