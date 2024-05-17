@@ -93,7 +93,7 @@ td form {
                 <td><?php echo $row['2']; ?></td>
                 <td><img src="../user/uprofile/pp/<?php echo $row['9']; ?>" height="50px" width="50px"></td>
                 <td><?php echo $row['11']; ?></td>
-                <td class="text-center"><a href="user-delete.php?u_id=<?php echo $row['0']; ?>"><i class="fa-solid fa-trash fa-xl text-danger"></i></a></td>
+                <td class="text-center"><a href="user-delete.php?u_id=<?php echo $row['0']; ?>" onclick='return checkdel()'><i class="fa-solid fa-trash fa-xl text-danger"></i></a></td>
             </tr>
             <?php
             $cnt=$cnt+1;
@@ -113,6 +113,11 @@ td form {
   $(document).ready( function () {
     $('#myTable').DataTable();
   });
+
+
+  function checkdel(){
+    return confirm('Are you sure you want to delete user ?');
+  }
 </script>
 </body>
 </html>
