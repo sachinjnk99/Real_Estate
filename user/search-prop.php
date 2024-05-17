@@ -1,10 +1,7 @@
 <?php 
 session_start();
 isset($_SESSION["u_email"]);
-if(!isset($_SESSION["u_email"])) {
-  header("Location: login.php");
-  exit;
-}
+
 include("config.php");
 ?>
 
