@@ -324,7 +324,7 @@ if(isset($_GET['u_id'])) {
                         <span class="price1"><?php echo $row['25'];?>-<?php echo $row['24'];?></span>
                     </span>
                    
-                   <h5> <a href="prop-details.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['u_name'];?>"> <?php echo $row['4'];?></a></h5>
+                   <h5> <a href="view-property.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['u_name'];?>"> <?php echo $row['4'];?></a></h5>
                     <span class="location text-capitalize  ">
                         <i class="fas fa-map-marker-alt text-success"></i>
                         <?php echo $row['18'];?>, <?php echo $row['19'];?>
