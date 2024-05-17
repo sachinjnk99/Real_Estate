@@ -1,3 +1,6 @@
+<?php 
+include("config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,38 +24,21 @@
             <div class="cards">
          
            
-                <a href="#">
+                <a href="user.php">
                 <div class="card">
                     <div class="box">
-                        <h1> <?php
-                            // Replace the database credentials with your own
-                            $servername = "localhost:3307";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "real";
-            
-                            // Create a connection to the database
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            
-                            // Check if the connection was successful
-                            if (!$conn) {
-                                die("Connection failed: " . mysqli_connect_error());
-                            }
-            
+                        <h1> <?php           
                             // Create a SQL query to count the number of records in a table
                             $sql = "SELECT COUNT(*) as count FROM user";
             
                             // Execute the query
-                            $result = mysqli_query($conn, $sql);
+                            $result = mysqli_query($con, $sql);
             
                             // Get the count of the records
                             $count = mysqli_fetch_assoc($result)['count'];
             
                             // Print the count within the h1 tag
                             echo $count;
-            
-                            // Close the database connection
-                            mysqli_close($conn);
                             ?></h1>
                         <h3>User</h3>
                     </div>
@@ -61,38 +47,21 @@
                     </div>
                 </div></a>
 
-                <a href="#">
+                <a href="property.php">
                 <div class="card">
                     <div class="box">
                         <h1><?php
-                            // Replace the database credentials with your own
-                            $servername = "localhost:3307";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "real";
-            
-                            // Create a connection to the database
-                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            
-                            // Check if the connection was successful
-                            if (!$conn) {
-                                die("Connection failed: " . mysqli_connect_error());
-                            }
-            
-                            // Create a SQL query to count the number of records in a table
-                            $sql = "SELECT COUNT(*) as count FROM property";
+                           // Create a SQL query to count the number of records in a table
+                            $sql = "SELECT COUNT(*) as count FROM property1";
             
                             // Execute the query
-                            $result = mysqli_query($conn, $sql);
+                            $result = mysqli_query($con, $sql);
             
                             // Get the count of the records
                             $count = mysqli_fetch_assoc($result)['count'];
             
                             // Print the count within the h1 tag
                             echo $count;
-            
-                            // Close the database connection
-                            mysqli_close($conn);
                             ?></h1>
                         <h3>Properties</h3>
                     </div>
@@ -102,10 +71,23 @@
                 </div>
             </a>
 
-            <a href="#">
+            <a href="agency.php">
                 <div class="card">
                     <div class="box">
-                        <h1>5</h1>
+                    <h1> <?php
+            
+            // Create a SQL query to count the number of records in a table
+            $sql = "SELECT COUNT(*) as count FROM user where u_type='agency'";
+
+            // Execute the query
+            $result = mysqli_query($con, $sql);
+
+            // Get the count of the records
+            $count = mysqli_fetch_assoc($result)['count'];
+
+            // Print the count within the h1 tag
+            echo $count;
+            ?></h1>
                         <h3>Agency</h3>
                     </div>
                     <div class="icon-case">
@@ -118,8 +100,21 @@
                 <a href="#">
                 <div class="card">
                     <div class="box">
-                        <h1>5</h1>
-                        <h3>Complain</h3>
+                    <h1> <?php
+            
+            // Create a SQL query to count the number of records in a table
+            $sql = "SELECT COUNT(*) as count FROM news";
+
+            // Execute the query
+            $result = mysqli_query($con, $sql);
+
+            // Get the count of the records
+            $count = mysqli_fetch_assoc($result)['count'];
+
+            // Print the count within the h1 tag
+            echo $count;
+            ?></h1>
+                        <h3>News</h3>
                     </div>
                     <div class="icon-case">
                         <img src="img/complain.png" style="height:90px; width:100px" alt="">
@@ -130,7 +125,20 @@
                 <a href="#">
                 <div class="card">
                     <div class="box">
-                        <h1>5</h1>
+                    <h1> <?php
+            
+            // Create a SQL query to count the number of records in a table
+            $sql = "SELECT COUNT(*) as count FROM feedback";
+
+            // Execute the query
+            $result = mysqli_query($con, $sql);
+
+            // Get the count of the records
+            $count = mysqli_fetch_assoc($result)['count'];
+
+            // Print the count within the h1 tag
+            echo $count;
+            ?></h1>
                         <h3>Complain</h3>
                     </div>
                     <div class="icon-case">
