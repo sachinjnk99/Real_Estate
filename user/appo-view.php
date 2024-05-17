@@ -193,7 +193,7 @@ td form {
                 }
                 ?></td>
                 <td class="text-center text-success"><?php echo $row['10']; ?></td>
-                <td> <a href="del-appo.php?uid=<?php echo $row['1']; ?>&&b_id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
+                <td> <a href="del-appo.php?uid=<?php echo $row['1']; ?>&&b_id=<?php echo $row['0']; ?>"onclick='return checkdel()'><button class="btn btn-danger">Delete</button></a></td>
             </tr>
             <?php
             $cnt=$cnt+1;
@@ -211,6 +211,10 @@ td form {
   $(document).ready( function () {
     $('#myTable').DataTable();
   });
+
+  function checkdel(){
+    return confirm('Are you sure want to delete record ?');
+  }
 </script>
           <?php include("include/footer.html");?>
 
