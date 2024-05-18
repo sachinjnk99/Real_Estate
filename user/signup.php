@@ -24,22 +24,6 @@ if (isset($_POST['reg'])) {
 
         $temp_name  =$_FILES['image']['tmp_name'];
         move_uploaded_file($temp_name,"uprofile/pp/$uimage");
-
-        //$query = "SELECT * FROM user3 where u_email='$u_email'";
-        //$res = $con->query($query);
-	    //$res=mysqli($con, $query);
-	    //$num=mysqli_num_rows($res);
-       
-	
-	    //if($num == 1)
-	    //{
-		    //$error = "<p class='alert alert-warning'>Email Id already Exist</p> ";
-	    //}
-	    //else
-	    //{
-            //if(!empty($u_name) && !empty($u_email) && !empty($u_phoneno) && !empty($u_password))
-		    //{
-
         // Check if the email already exists
     $checkQuery = "SELECT * FROM user WHERE u_email=?";
     $checkStmt = $mysqli->prepare($checkQuery);
@@ -54,30 +38,23 @@ if (isset($_POST['reg'])) {
 
       $sql="insert into user (u_id, u_name, u_phoneno, u_email, u_password, u_address, u_regi, u_desc, document, uimage, u_type, action,otp) values('$u_id', '$u_name', '$u_phoneno', '$u_email', '$encpass','$u_address','$u_regi', '$u_desc','$doc', '$uimage', 'user','approved','$code')";
 	    $result=mysqli_query($con,$sql);
-
-
-        //Insert Captured information to a database table
-        //$postQuery = "INSERT INTO user (u_id, u_name, u_phoneno, u_email, u_password, uimage, u_type) VALUES(?,?,?,?,?,?,?)";
-        //$postStmt = $mysqli->prepare($postQuery);
-        //bind paramaters
-       // $rc = $postStmt->bind_param('sssss', $u_id, $u_name, $u_phoneno, $u_email, $u_password, $uimage, $u_type);
-       // $postStmt->execute();
         //declare a varible which will be passed to alert function.
         if ($result) {
-
+          $_SESSION['status']="OTP Send to your register email";
+          header('location: otp.php');
              // show pop-up message
-        echo '<script>alert("otp Send  to your email $u_email");</script>';
+       // echo '<script>alert("OTP Send to your email");</script>';
         // redirect to login page
-        echo '<script>window.location.href = "otp.php";</script>';
+        //echo '<script>window.location.href = "otp.php";</script>';
            // $msg = "<p class='alert alert-success'> Customer Account Created </p>" && header("refresh:1; url=index.php");
         } else {
-            $error = "Please Try Again Or Try Later";
+            echo "Please Try Again Or Try Later";
         }
     }
 
 // Email subject
-$subject = "Password Reset Code";
-$message = "Your password reset code is $code ";
+$subject = "Signup OTP Code";
+$message = "Your signup OTP code is $code ";
 
 
 

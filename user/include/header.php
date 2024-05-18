@@ -114,8 +114,9 @@
               <div class="dropdown-content">
               <a  href="profile1.php">Profile</a>
               <a href="appo-view.php">Appointment Request</a>
+              <a href="request-info.php">Request info</a>
               <a href="myproperty1.php">My property</a>
-              <a href="logout.php">Logout</a>
+              <a href="logout.php" onclick='return checkdel()'>Logout</a>
               </div>
             </div>
             <?php } else { ?>
@@ -132,7 +133,11 @@
 
           </div>  
   </nav>
-
+  <script>
+  function checkdel(){
+    return confirm('Are you sure you want to Logout?');
+  }
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>

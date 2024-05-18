@@ -79,6 +79,20 @@ if(isset($_REQUEST['login']))
                         <form method="post" enctype="multipart/form-data">
                             <h4 class="text-center text-dark">Please login to your account</h4>
                             <?php echo $error; ?><?php echo $msg; ?>
+
+                            <?php
+
+                                if(isset($_SESSION['status'])){
+                                    ?>
+                                     <div class="alert alert-success" role="alert">
+                                     <?php echo $_SESSION['status'];  ?>
+                                     </div>
+                                    <?php
+                                    
+                                    unset($_SESSION['status']);
+                                }
+
+                                ?>
                             <hr>                  
                                 <div class="form-outline mb-4 pt-4">
                                     <label class="form-label text-dark" for="form2Example11">Email</label>

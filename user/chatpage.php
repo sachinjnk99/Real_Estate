@@ -13,7 +13,7 @@ if(isset($_POST['send_message1'])){
     $uid = $_SESSION["u_id"];
 
     // Insert the message into the message table
-    $sql = "INSERT INTO message (message, u_id, p_id) VALUES ('$message','$uid','$pid')";
+    $sql = "INSERT INTO message1 (message, u_id, p_id) VALUES ('$message','$uid','$pid')";
     $query = mysqli_query($con, $sql);
 }
 ?>
@@ -23,11 +23,11 @@ if(isset($_POST['send_message1'])){
 <head>
     <style>
         .message:nth-child(even) {
-            background-color: #c616e469; 
+            background-color: #708090; 
         }
 
         .message:nth-child(odd) {
-            background-color: #673ab7; 
+            background-color: #778899; 
         }
 
         /* Other styles */
@@ -44,7 +44,7 @@ if(isset($_POST['send_message1'])){
 
         .display-chat {
             height: 300px;
-            background-color: lightgrey;
+            background-color: #F8FAFB;
             margin-bottom: 4%;
             overflow-y: auto; 
             padding: 15px;
@@ -65,7 +65,7 @@ if(isset($_POST['send_message1'])){
     <div class="display-chat" id="chat-container">
         <?php
         // Select messages associated with the given property ID
-        $sql = "SELECT * FROM message WHERE p_id='$pid'";
+        $sql = "SELECT * FROM message1 WHERE p_id='$pid'";
         $query = mysqli_query($con, $sql);
 
         if(mysqli_num_rows($query) > 0) {
@@ -83,7 +83,7 @@ if(isset($_POST['send_message1'])){
         <div  style="display: inline-block; margin-right: 5px;">
             <img src="uprofile/pp/<?php echo $img;?>" alt="userimage" style="border-radius: 50%; width: 40px; height: 40px;">
         </div>
-        <span class="text-dark" style="font-size: 20px; font-weight: bold; text-transform: capitalize; font-family: 'Arial', sans-serif;"><?php echo $user_name; ?></span><br>
+        <span class="text-dark" style="font-size: 18px; font-weight: bold; text-transform: capitalize; font-family: 'Arial', sans-serif;"><?php echo $user_name; ?></span><br>
 
         <span style="margin-left: 53px; font-family: 'Arial', sans-serif; "><?php echo ucfirst(strtolower($row['message'])); ?></span>
 

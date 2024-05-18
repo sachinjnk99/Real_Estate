@@ -62,6 +62,9 @@ $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 // Send email
 $check = mail("$to", "$subject", "$message", "$headers");
 
+
+$_SESSION['status']="Signup Successful! ✅ <br>
+Please proceed to log in by entering your email and password.";
 header('location: login.php');
 
         exit();

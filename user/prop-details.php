@@ -16,6 +16,7 @@ if(isset($_POST['book'])) {
     $uid = $_SESSION['u_id'];
     $pid = $_POST['pid']; 
     $oid = $_POST['oid'];
+    $oname = $_POST['oname'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
@@ -24,8 +25,8 @@ if(isset($_POST['book'])) {
     $message = $_POST['message'];
     
     // Construct the SQL query with a join to fetch owner email
-    $sql = "INSERT INTO bookappo (uid, name, email, mobile, date, time, message, pid, owner_id) 
-            VALUES ('$uid', '$name', '$email', '$mobile', '$date', '$time', '$message', '$pid', '$oid')";
+    $sql = "INSERT INTO bookappo (uid, name, email, mobile, date, time, message, pid, owner_id,owner_name) 
+            VALUES ('$uid', '$name', '$email', '$mobile', '$date', '$time', '$message', '$pid', '$oid','$oname')";
     
     // Execute the SQL query
     $result = mysqli_query($con, $sql);
@@ -90,6 +91,7 @@ if(isset($_POST['book'])) {
 if(isset($_POST['request']))
 {
   $uid=$_SESSION['u_id'];
+  $uname=$_SESSION['u_name'];
   $pid=$_POST['pid']; 
 	$oid=$_POST['oid'];
 	$name=$_POST['name'];
@@ -517,10 +519,21 @@ while($row=mysqli_fetch_array($query))
 <p class=" text-success">Real Estate Management System Pvt. Ltd. <br> Email: realestate@gmail.com <br>Contact no. : 9816826674 , 9829925063<br> Facebook page:      </p>
 <hr class="bg-dark ">
 
+<h7 class="bed"><i class="fa-solid fa-bed text-success"></i><br>
+                <?php echo $row['9'];?>
+              </h7><br>
+              <h7 class="kitch"><i class="fa-solid fa-kitchen-set text-success"></i><br>
+                <?php echo $row['10'];?>
+              </h7>
+              <h7 class="bath"><i class="fa-solid fa-bath text-success"></i> <br>
+                <?php echo $row['12'];?>
+              </h7>
+
 <?php
 
  $pid = $_REQUEST['pid'];
 $oid=$_REQUEST['uid'];
+$oname = $_REQUEST['u_name'];
  ?>
  
 
@@ -542,20 +555,28 @@ $msg="";
     <div class="row mt-3">
     <input class="form-control" value="<?php echo $oid;?>" required name="oid" type="hidden">
     <input class="form-control" value="<?php echo $pid;?>" required name="pid" type="hidden">
+    <input class="form-control" value="<?php echo $oname;?>" required name="oname" type="hidden">
 
+    <?php 
+                                $uid=$_SESSION['u_id'];
+                                $query=mysqli_query($con,"SELECT * FROM `user` WHERE u_id='$uid'");
+                                while($row=mysqli_fetch_array($query))
+                                {
+                            ?>
+                  
                   <div class="col">
                   <label class="text-dark" for="name">Name</label>
-                  <input type="text" class="form-control" placeholder="Enter your name" aria-label="name"
+                  <input type="text" class="form-control" placeholder="Enter your name" aria-label="name" value="<?php echo $row['1'];?>"
                     name="name" required>
                 </div>
                 <div class="col">
                   <label class="text-dark" for="email">Email Address</label>
-                  <input type="text" class="form-control" id="email" placeholder="Enter your email" aria-label="email" name="email" pattern=".+@gmail\.com" size="30" required title="Enter valid email(abc@gmail.com)"/>  
+                  <input type="text" class="form-control" id="email" placeholder="Enter your email"  value="<?php echo $row['3'];?>" aria-label="email" name="email" pattern=".+@gmail\.com" size="30" required title="Enter valid email(abc@gmail.com)"/>  
                 </div>
 
                 <div class="col">
                   <label class="text-dark" for="contact">Mobile Number</label>
-                  <input type="text" class="form-control" id="mobile" placeholder="Enter your moblie number" aria-label="mobile" name="mobile" required pattern="[0-9]{10}" title="Enter valid 10-digit mobile number">
+                  <input type="text" class="form-control" id="mobile" placeholder="Enter your moblie number" value="<?php echo $row['2'];?>" aria-label="mobile" name="mobile" required pattern="[0-9]{10}" title="Enter valid 10-digit mobile number">
                 </div>
               </div>
 
@@ -586,6 +607,7 @@ $msg="";
                 <button type="submit" name="book" class="btn btn-success btn-lg  text-center">Send</button>
                 </div>
               </div>
+             
 </form>
 
 <form id="form2" style="display: none;" method="post" enctype="multipart/form-data">
@@ -597,17 +619,17 @@ $msg="";
 
                   <div class="col">
                   <label class="text-dark" for="name">Name</label>
-                  <input type="text" class="form-control" placeholder="Enter your name" aria-label="name"
+                  <input type="text" class="form-control" placeholder="Enter your name" aria-label="name" value="<?php echo $row['1'];?>" 
                     name="name" required>
                 </div>
                 <div class="col">
                   <label class="text-dark" for="email">Email Address</label>
-                  <input type="text" class="form-control" id="email" placeholder="Enter your email" aria-label="email" name="email" pattern=".+@gmail\.com" size="30" required title="Enter valid email(abc@gmail.com)"/>  
+                  <input type="text" class="form-control" id="email" placeholder="Enter your email" aria-label="email" name="email" value="<?php echo $row['3'];?>" pattern=".+@gmail\.com" size="30" required title="Enter valid email(abc@gmail.com)"/>  
                 </div>
 
                 <div class="col">
                   <label class="text-dark" for="contact">Mobile Number</label>
-                  <input type="text" class="form-control" id="mobile" placeholder="Enter your moblie number" aria-label="mobile" name="mobile" required pattern="[0-9]{10}" title="Enter valid 10-digit mobile number">
+                  <input type="text" class="form-control" id="mobile" placeholder="Enter your moblie number"  value="<?php echo $row['2'];?>" aria-label="mobile" name="mobile" required pattern="[0-9]{10}" title="Enter valid 10-digit mobile number">
                 </div>
               </div>
 
@@ -619,6 +641,7 @@ $msg="";
                 <div class="text-left mt-3">
                 <button type="submit" name="request" class="btn btn-danger btn-lg  text-center">Send</button>
                 </div>
+                <?php } ?>
 
               
 </form>
@@ -655,15 +678,7 @@ function showForm(formId) {
 
 
 
-              <h7 class="bed"><i class="fa-solid fa-bed text-success"></i><br>
-                <?php echo $row['9'];?>
-              </h7><br>
-              <h7 class="kitch"><i class="fa-solid fa-kitchen-set text-success"></i><br>
-                <?php echo $row['10'];?>
-              </h7>
-              <h7 class="bath"><i class="fa-solid fa-bath text-success"></i> <br>
-                <?php echo $row['12'];?>
-              </h7>
+           
 
 <!--
               <form method="POST" action="chatpage.php">

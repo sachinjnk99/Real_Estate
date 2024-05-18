@@ -31,7 +31,7 @@ if(!isset($_SESSION["u_email"])) {
 }
 
 .bg{
-    background-color: rgb(69, 7, 239);
+    background-color: #6495ED;
 }
 
 .bg1{
@@ -82,6 +82,7 @@ td form {
                 <th>Date</th>
                 <th>Time</th>
                 <th>Message</th>
+                <th>owner</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -99,7 +100,7 @@ td form {
         ?>
             <tr>
                 <td><?php echo $cnt; ?></td>
-                <td class="text-center">REMS-<?php echo $row['8']; ?></td>
+                <td class="text-center" > <a href="prop-details.php?pid=<?php echo $row['8'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['10'];?>">REMS-<?php echo $row['8']; ?></a></td>
                 <td><?php echo $row['2']; ?></td>
                 <td><?php echo $row['3']; ?></td>
                 <td class="text-center"><?php echo $row['4']; ?></td>
@@ -118,8 +119,9 @@ td form {
                 echo $line . "<br>";
                 }
                 ?></td>
-                <td class="text-center"><?php echo $row['10']; ?></td>
-                <td><a href="accept-booking.php?b_id=<?php echo $row['0'];?>&pid=<?php echo $row['8']; ?>&uid=b_id=<?php echo $row['1']; ?>"><button class="btn btn-success">Accept</button></a></td>
+                <td class="text-center text-success"><?php echo $row['10']; ?></td>
+                <td class="text-center"><?php echo $row['11']; ?></td>
+                <td><a href="accept-booking.php?b_id=<?php echo $row['0'];?>&pid=<?php echo $row['8']; ?>&uid=<?php echo $row['1']; ?>" onclick='return checkdel1()'><i class="fa-solid fa-square-check fa-xl ms-3 me-3"></i></a>  <a href="cencle-booking.php?b_id=<?php echo $row['0'];?>&pid=<?php echo $row['8']; ?>&uid=<?php echo $row['1']; ?>" onclick='return cancle()'><i class="fa-solid fa-xmark fa-xl" style="color: #ff643d;"></i></a> </td>
             </tr>
             <?php
             $cnt=$cnt+1;
@@ -151,11 +153,11 @@ td form {
                 <th>#</th>
                 <th>Property Id</th>
                 <th>Name</th>
-                <th>Email</th>
                 <th>Contact</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Message</th>
+                <th>owner</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -173,10 +175,11 @@ td form {
         ?>
             <tr >
                 <td><?php echo $cnt; ?></td>
-                <td class="text-center">REMS-<?php echo $row['8']; ?></td>
+
+                <td class="text-center" > <a href="prop-details.php?pid=<?php echo $row['8'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['10'];?>">REMS-<?php echo $row['8']; ?></a></td>
                 <td><?php echo $row['2']; ?></td>
-                <td ><?php echo $row['3']; ?></td>
-                <td class="text-center"><?php echo $row['4']; ?></td>
+                <td ><?php echo $row['4']; ?></td>
+                
                 <td class="text-center"><?php echo $row['5']; ?></td>
                 <td class="text-center"><?php echo $row['6']; ?></td>
                 <td><?php
@@ -192,8 +195,9 @@ td form {
                 echo $line . "<br>";
                 }
                 ?></td>
-                <td class="text-center text-success"><?php echo $row['10']; ?></td>
-                <td> <a href="del-appo.php?uid=<?php echo $row['1']; ?>&&b_id=<?php echo $row['0']; ?>"onclick='return checkdel()'><button class="btn btn-danger">Delete</button></a></td>
+                 <td class="text-center text-success"><?php echo $row['10']; ?></td>
+                <td class="text-center text-success"><?php echo $row['11']; ?></td> 
+                <td> <a href="del-appo.php?uid=<?php echo $row['1']; ?>&&b_id=<?php echo $row['0']; ?>" onclick='return checkdel()'><i class="fa-solid fa-trash fa-xl text-center ms-4" style="color: #da1629;"></i></a></td>
             </tr>
             <?php
             $cnt=$cnt+1;
@@ -215,6 +219,15 @@ td form {
   function checkdel(){
     return confirm('Are you sure want to delete record ?');
   }
+
+  function checkdel1(){
+    return confirm('Are you sure want to Accept ?');
+  }
+
+  function cancle(){
+    return confirm('Are you sure want to Cancle ?');
+  }
+
 </script>
           <?php include("include/footer.html");?>
 

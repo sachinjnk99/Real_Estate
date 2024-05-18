@@ -76,7 +76,8 @@ include("config.php");
                         </span>
                       </span>
                       <h5 class="text-secondary hover-text-success mb-2 text-capitalize ">
-                      <a href="prop-details.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>"> <?php echo $row['4'];?></a></h5>
+                      <a href="prop-details.php?pid=<?php echo $row['0'];?>&uid=<?php echo $row['1'];?>&u_name=<?php echo $row['u_name'];?>"> <?php echo $row['4'];?></a></h5>
+                      
 
 
                       <span class="location text-capitalize  "><i class="fas fa-map-marker-alt text-success"></i>

@@ -1,4 +1,7 @@
-<?php require_once "otp-verify.php"; ?>
+<?php 
+session_start();
+require_once "otp-verify.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +33,8 @@
 
                     <form action="" method="POST" autocomplete="">
                     <h3 class="text-center text-secondary mb-4">Enter OTP</h3>
+
+
                     <?php
                             if(isset($errors) && count($errors) > 0){
                                 echo "<div class='alert alert-danger'>";
@@ -37,6 +42,16 @@
                                         echo "<p>" . $error . "</p>";
                                             }
                                             echo "</div>";
+                                }
+
+                                if(isset($_SESSION['status'])){
+                                    ?>
+                                     <div class="alert alert-success" role="alert">
+                                     <?php echo $_SESSION['status'];  ?>
+                                     </div>
+                                    <?php
+                                    
+                                    unset($_SESSION['status']);
                                 }
 
                                 ?>

@@ -26,7 +26,7 @@ if ($con->query($sql) === TRUE) {
         </head>
         <body>
         <p>Dear " . $row['name'] . ",</p>
-        <p>We are pleased to inform you that your appointment has been approved successfully.</p>
+        <p>We are pleased to inform you that your appointment has been Accepted successfully.</p>
         <p><b>Appointment Details:</b></p>
         <p><b>Date: " . $row['date'] . "</b></p>
         <p><b>Time: " . $row['time'] . "</b></p>
