@@ -2,6 +2,9 @@
 include("config.php");
 $error="";
 $msg="";
+session_start();
+
+
 
 // If user clicks the "Check Email" button in the forgot password form
 
@@ -21,8 +24,8 @@ if(isset($_POST['check-email'])){
             
 
             if(mail($email, $subject, $message, $sender)){
-                $_SESSION['info'] = "We've sent a password reset OTP to your email - $email";
-                $_SESSION['email'] = $email;
+                $_SESSION['info'] = "We've sent a password reset OTP to your email";
+                //$_SESSION['email'] = $email;
                 header('location: reset-code.php');
                 exit();
             }else{
@@ -69,7 +72,6 @@ if(isset($_POST['change-password'])){
         $run_query = mysqli_query($con, $update_pass);
         if($run_query){
             $_SESSION['info'] = "Your password has been changed. Now you can login with your new password.";
-
             header('Location: login.php');
         }else{
             $errors['db-error'] = "Failed to change your password!";

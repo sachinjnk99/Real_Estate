@@ -72,6 +72,7 @@ if(isset($_POST['book'])) {
             
             // Send email to the property owner
             if (mail($owner_email, $subject, $message, $headers)) {
+              $_SESSION['status']="Appointment have successfully submited";
                 header('Location: appo-view.php');
                 exit();
             } else {
@@ -604,7 +605,7 @@ $msg="";
                 <p class="mt-2">Your name, phone number and email address are required so that we may contact you to schedule an appointment.</p>
 
                 <div class="text-left mt-3">
-                <button type="submit" name="book" class="btn btn-success btn-lg  text-center">Send</button>
+                <button type="submit" name="book" class="btn btn-success btn-lg  text-center" onclick='return msg()'>Send</button>
                 </div>
               </div>
              
@@ -639,7 +640,7 @@ $msg="";
                 </div>
 
                 <div class="text-left mt-3">
-                <button type="submit" name="request" class="btn btn-danger btn-lg  text-center">Send</button>
+                <button type="submit" name="request" class="btn btn-danger btn-lg  text-center" onclick='return msg1()'>Send</button>
                 </div>
                 <?php } ?>
 
@@ -671,6 +672,14 @@ function showForm(formId) {
         formToShow.style.display = 'block';
     }
 }
+
+function msg(){
+    return confirm('Are you sure you want to Book Appointment?');
+  }
+
+  function msg1(){
+    return confirm('Are you sure you want to Request for more info?');
+  }
 </script>
 
 

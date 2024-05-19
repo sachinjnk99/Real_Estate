@@ -56,7 +56,7 @@
 
                                 <div class="text-center">
                                     <button type="submit" name="check-email"
-                                        class="btn btn-primary btn-lg btn-block ">Reset Password</button>
+                                        class="btn btn-primary btn-lg btn-block " onclick='return msg()'>Reset Password</button>
                                 </div>
                             
                             <br>
@@ -82,6 +82,7 @@ function myFunction() {
     x.type = "password";
   }
 }
+
 </script>
 
     <?php include("include/footer.html");?>

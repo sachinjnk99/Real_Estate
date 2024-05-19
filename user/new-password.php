@@ -30,10 +30,22 @@
 
                     <form action="" method="POST" autocomplete="">
                             <h4 class="text-center text-dark ">New Password</h4>
-                            <hr>
-                           
-                                
 
+                            <?php
+
+if(isset($_SESSION['info'])){
+    ?>
+     <div class="alert alert-success" role="alert">
+     <?php echo $_SESSION['info'];  ?>
+     </div>
+    <?php
+    
+    unset($_SESSION['info']);
+}
+
+?>
+                            <hr>
+                  
                             <div class="row mt-3">
                   <div class="col">
                   <div class="form-outline mb-2">

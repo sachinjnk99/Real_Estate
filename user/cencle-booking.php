@@ -1,16 +1,22 @@
 <?php
 include('config.php');
 
-// Fetch the appointment details first
-$id = mysqli_real_escape_string($con, $_REQUEST['b_id']);
+$id = mysqli_real_escape_string($con, $_REQUEST['b_id']); 
+$pid = mysqli_real_escape_string($con, $_REQUEST['pid']);
 $uid = mysqli_real_escape_string($con, $_REQUEST['uid']);
 
-// Step 1: Fetch appointment details from the database
-$query = mysqli_query($con, "SELECT * FROM bookappo WHERE b_id='$id' AND uid='$uid'");
+// Step 1: Construct the UPDATE query
+$sql = "UPDATE bookappo SET b_status = 'Canceled' WHERE b_id='$id'";
 
-// Check if the appointment exists
-if ($row = mysqli_fetch_array($query)) {
-    // Step 2: Send the cancellation email
+// Step 2: Execute the query
+if ($con->query($sql) === TRUE) {
+    // Step 3: Fetch appointment details from the database
+    $query = mysqli_query($con, "SELECT * FROM bookappo WHERE b_id='$id'");
+    
+    // Step 4: Fetch appointment details and send email
+    $row = mysqli_fetch_array($query);
+    if ($row) {
+         // Step 2: Send the cancellation email
     $to = $row['email'];
     $subject = "Cancellation of Appointment";
     $message = "
@@ -28,31 +34,29 @@ if ($row = mysqli_fetch_array($query)) {
     </body>
     </html>
     ";
-
-    // Additional headers
-    $headers = "From: Real Estate Management System <noreply@example.com>\r\n";
-    $headers .= "Reply-To: Real Estate Support <support@example.com>\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-    // Send email
-    if (mail($to, $subject, $message, $headers)) {
-        // Step 3: Construct the DELETE query
-        $sql = "DELETE FROM bookappo WHERE uid = '$uid' AND b_id = '$id'";
-
-        // Step 4: Execute the DELETE query
-        if ($con->query($sql) === TRUE) {
+        
+        // Additional headers
+        $headers = "From: Real Estate Management System <noreply@example.com>\r\n";
+        $headers .= "Reply-To: Real Estate Support <support@example.com>\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        
+        // Send email
+        if (mail($to, $subject, $message, $headers)) {
             header('Location: appo-view.php');
             exit();
         } else {
-            echo "Error deleting record: " . $con->error;
+            echo "Error: Email could not be sent.";
         }
     } else {
-        echo "Error: Email could not be sent.";
+        echo "Error: Appointment not found.";
     }
 } else {
-    echo "Error: Appointment not found.";
+    echo "Error updating record: " . $con->error;
 }
 
 // Close connection
 $con->close();
 ?>
+
+
+

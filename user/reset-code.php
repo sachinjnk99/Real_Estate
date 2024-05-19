@@ -1,5 +1,6 @@
 
-<?php require_once "pass.php"; ?>
+<?php require_once "pass.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +24,7 @@
 
 <body>
 <?php include("include/header.php");?>
-    <div class="container pb-5 pt-5 mt-5 mb-5">s
+    <div class="container pb-5 pt-5 mt-5 mb-5">
         <div class="row justify-content-center ">
             <div class="col-lg-4 mt-4">
                 <div class="card bg-light" style="border-radius: 10px;">
@@ -40,7 +41,29 @@
                                             echo "</div>";
                                 }
 
+                                
+                                if(isset($_SESSION['status'])){
+                                    ?>
+                                     <div class="alert alert-success" role="alert">
+                                     <?php echo $_SESSION['status'];  ?>
+                                     </div>
+                                    <?php
+                                    
+                                    unset($_SESSION['status']);
+                                  
+                                }
                                 ?>
+
+                                <?php
+                                 if(isset($_SESSION['info'])){
+                                    ?>
+                                     <div class="alert alert-success" role="alert">
+                                     <?php echo $_SESSION['info'];  ?>
+                                     </div>
+                                    <?php
+                                    
+                                    unset($_SESSION['info']);
+                                } ?>
                             <hr>
                            
                             <div class="form-outline mb-4 pt-4">

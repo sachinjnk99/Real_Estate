@@ -93,6 +93,21 @@ if(isset($_REQUEST['login']))
                                 }
 
                                 ?>
+
+<?php
+
+if(isset($_SESSION['info'])){
+    ?>
+     <div class="alert alert-success" role="alert">
+     <?php echo $_SESSION['info'];  ?>
+     </div>
+    <?php
+    
+    unset($_SESSION['info']);
+}
+
+?>
+
                             <hr>                  
                                 <div class="form-outline mb-4 pt-4">
                                     <label class="form-label text-dark" for="form2Example11">Email</label>
